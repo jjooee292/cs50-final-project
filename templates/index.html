@@ -5,8 +5,20 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Board Game Tools</h1>
-    <h2>Username: {{ username }}</h2>
+    {% if get_flashed_messages() %}
+    <div class="popup_banner">
+        <header class="alert_box">
+            <div class="alert alert-success alert-dismissible text-center fade show" role="alert">
+                Welcome, {{ get_flashed_messages() | join(" ") }}.
+                <button class="close btn-close" data-dismiss="alert" aria-label="close"></button>
+            </div>
+        </header>
+    </div>
+    {% endif %}
+    <div class="main_page_content">
+        <h1>Board Game Tools</h1>
+        <h2>Username: {{ username }}</h2>
+    </div>
 {% endblock %}
 
 {% block footer %}

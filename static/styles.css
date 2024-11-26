@@ -22,3 +22,19 @@
   margin-right: 4%;
   color:floralwhite;
 }
+
+.alert_box {
+  position: absolute;
+  z-index: 2;
+  margin-top: -29px;
+}
+
+.main_page_content {
+  position: relative;
+  z-index: 1;
+}
+
+.popup_banner {
+  display: flex;
+  justify-content: center;
+}

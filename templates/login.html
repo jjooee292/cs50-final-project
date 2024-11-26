@@ -6,19 +6,23 @@
 
 {% block main %}
     {% if get_flashed_messages() %}
-    <header>
-        <div class="alert alert-warning alert-dismissible text-center fade show" role="alert">
-            {{ get_flashed_messages() | join(" ") }}.
-            <button class="close btn-close" data-dismiss="alert" aria-label="close"></button>
+    <div class="popup_banner">
+        <div class="alert_box">
+            <div class="alert alert-warning alert-dismissible text-center fade show" role="alert">
+                {{ get_flashed_messages() | join(" ") }}.
+                <button class="close btn-close" data-dismiss="alert" aria-label="close"></button>
+            </div>
         </div>
-    </header>
+    </div>
     {% endif %}
-    <h1>Log in</h1>
-    <form method="post", action="/login">
-        <input type="text" name="username" placeholder="Username" autocomplete="off">
-        <input type="password" name="password" placeholder="Password" autocomplete="off">
-        <button>Log In</button>
-    </form>
+    <div class="main_page_content">
+        <h1>Log in</h1>
+        <form method="post", action="/login">
+            <input type="text" name="username" placeholder="Username" autocomplete="off">
+            <input type="password" name="password" placeholder="Password" autocomplete="off">
+            <button>Log In</button>
+        </form>
+    </div>
 {% endblock %}
 
 {% block footer %}

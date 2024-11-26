@@ -65,13 +65,12 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    session.clear()
     if request.method == "POST":
         if not request.form.get("username"):
-            flash("Please provide a username")
+            flash("Error: Please provide a username")
             return redirect("/login")
         elif not request.form.get("password"):
-            flash("Please provide a password")
+            flash("Error: Please provide a password")
             return redirect("/login")
         rows = db.execute(
             "SELECT * FROM users WHERE username = ?", request.form.get("username")
@@ -80,10 +79,11 @@ def login():
         if len(rows) != 1 or not check_password_hash(
             rows[0]["password_hash"], request.form.get("password")
         ):
-            flash("Invalid username and/or password")
+            flash("Error: Invalid username and/or password")
             return redirect("/login")
         session["user_id"] = rows[0]["id"]
         session["username"] = rows[0]["username"]
+        flash(session["username"])
         return redirect("/")
     else:
         return render_template("login.html")
