@@ -1,0 +1,24 @@
+#page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+  
+#content-wrap {
+    padding-bottom: 2.5rem;    /* Footer height */
+    margin-left: 4%; 
+    margin-right: 4%;
+  }
+  
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;            /* Footer height */
+    background-color: #1a1d20;
+  }
+
+#footer-content {
+  margin-left: 4%; 
+  margin-right: 4%;
+  color:floralwhite;
+}

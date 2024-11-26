@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    {% if get_flashed_messages() %}
+    <header>
+        <div class="alert alert-warning alert-dismissible text-center fade show" role="alert">
+            <strong>Error</strong>: {{ get_flashed_messages() | join(" ") }}.
+            <button class="close btn-close" data-dismiss="alert" aria-label="close"></button>
+        </div>
+    </header>
+    {% endif %}
+    <h1>Register for an account</h1>
+    <form method="post", action="/register">
+        <input type="text" name="username" placeholder="Username" autocomplete="off">
+        <input type="password" name="password" placeholder="Password" autocomplete="off" minlength="8">
+        <button>Register</button>
+    </form>
+    <p>Passwords must be at least 8 digits long, and contain one capital letter and one special character.</p>
+{% endblock %}
+
+{% block footer %}
+    <p>Sign up or log in to start tracking scores</p>
+{% endblock %}
