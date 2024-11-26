@@ -27,10 +27,7 @@ def login_required(f):
 
 @app.route("/")
 def index():
-    username = "Not Logged In"
-    if session.get("user_id") is not None:
-        username = session["username"]
-    return render_template("index.html", username = username)
+    return render_template("index.html")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -99,4 +96,27 @@ def logout():
 @app.route("/account")
 @login_required
 def account():
-    return render_template("account.html")
+    return render_template("account.html", username = session["username"])
+
+@app.route("/games")
+def games():
+    return render_template("games.html")
+
+@app.route("/games/scrabble")
+def scrabble():
+    return render_template("scrabble.html")
+
+@app.route("/tools")
+def tools():
+    return render_template("tools.html")
+
+@app.route("/tools/dice", methods=["GET", "POST"])
+def dice():
+    if request.method == "POST":
+        return render_template("dice-roll.html")
+    else:
+        return render_template("dice.html")
+
+@app.route("/tools/keep-scores")
+def scores():
+    return render_template("scores.html")

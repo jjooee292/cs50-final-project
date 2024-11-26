@@ -12,7 +12,7 @@
     <body id="page-container">
         <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="/static/dice_icon.svg" alt="Dice Icon" width="40" height="30" style="margin-right: 5%; margin-bottom: 2%;">Board Game Tools</a>
+                <a class="navbar-brand" href="/"><img src="/static/dice_icon.svg" alt="Dice Icon" width="40" height="30" style="margin-right: 5%; margin-bottom: 2%;">Board Game Tools</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -20,22 +20,28 @@
                 <ul class="navbar-nav">
                   <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Tools</a>
+                  </li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Tools
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/tools">All Tools</a></li>
+                      <li><a class="dropdown-item" href="/tools/dice">Dice</a></li>
+                      <li><a class="dropdown-item" href="/tools/keep-scores">Keep Scores</a></li>
+                    </ul>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Games
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">All Games</a></li>
-                      <li><a class="dropdown-item" href="#">Scrabble</a></li>
-                      <li><a class="dropdown-item" href="#">Monopoly</a></li>
+                      <li><a class="dropdown-item" href="/games">All Games</a></li>
+                      <li><a class="dropdown-item" href="/games/scrabble">Scrabble</a></li>
+                      <li><a class="dropdown-item" href="/games/monopoly">Monopoly</a></li>
                     </ul>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Account</a>
+                    <a class="nav-link" href="/account">Account</a>
                   </li>
                 </ul>
             </div>
