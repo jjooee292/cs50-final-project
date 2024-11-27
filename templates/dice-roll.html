@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dice
+{% endblock %}
+
+{% block main %}
+    <div class="main_page_content">
+        <h1>Dice rolls</h1>
+            <table class="table table-dark">
+                {% if D4|length > 0 %}
+                <tr>
+                    <td>D4:</td>
+                    {% for i in D4 %}
+                        <td id="dice_result">{{ i }}</td>
+                    {% endfor %}
+                    <td>Total: {{ D4_t }}</td>
+                </tr>
+                {% endif %}
+                {% if D6|length > 0 %}
+                <tr>
+                    <td>D6:</td>
+                    {% for i in D6 %}
+                        <td id="dice_result">{{ i }}</td>
+                    {% endfor %}
+                    <td>Total: {{ D6_t }}</td>
+                </tr>
+                {% endif %}
+                {% if D8|length > 0 %}
+                <tr>
+                    <td>D8:</td>
+                    {% for i in D8 %}
+                        <td id="dice_result">{{ i }}</td>
+                    {% endfor %}
+                    <td>Total: {{ D8_t }}</td>
+                </tr>
+                {% endif %}
+                {% if D10|length > 0 %}
+                <tr>
+                    <td>D10:</td>
+                    {% for i in D10 %}
+                        <td id="dice_result">{{ i }}</td>
+                    {% endfor %}
+                    <td>Total: {{ D10_t }}</td>
+                </tr>
+                {% endif %}
+                {% if D12|length > 0 %}
+                <tr>
+                    <td>D12:</td>
+                    {% for i in D12 %}
+                        <td id="dice_result">{{ i }}</td>
+                    {% endfor %}
+                    <td>Total: {{ D12_t }}</td>
+                </tr>
+                {% endif %}
+                {% if D20|length > 0 %}
+                <tr>
+                    <td>D20:</td>
+                    {% for i in D20 %}
+                        <td id="dice_result">{{ i }}</td>
+                    {% endfor %}
+                    <td>Total: {{ D20_t }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td>Grand Total</td>
+                    <td>{{ D4_t + D6_t + D8_t + D10_t + D12_t + D20_t }}</td>
+                </tr>
+            </table>
+            <div style="display:flex; justify-content: flex-end;">
+                <button id="action_buttons" class="btn btn-outline-primary" type="button" onClick="window.location.reload();">Re-Roll</button>
+                <form method="get", action="/tools/dice">
+                    <button id="action_buttons" class="btn btn-outline-warning">Change dice</button>
+                </form>
+            </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

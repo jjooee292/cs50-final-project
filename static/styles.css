@@ -1,3 +1,10 @@
+@font-face {
+  /* “GamingDice” font  © 2013 Joshua Dale Meadows and released under Creative Commons Attributions CC BY 
+License. */
+  font-family: 'GamingDice';
+  src: URL('GamingDiceStandard.ttf') format('truetype');
+}
+
 #page-container {
     position: relative;
     min-height: 100vh;
@@ -37,4 +44,17 @@
 .popup_banner {
   display: flex;
   justify-content: center;
+}
+
+#action_buttons {
+  margin-right: 20px;
+}
+
+td {
+  width: 150px;
+}
+
+#dice_result {
+  font-family: GamingDice;
+  font-size: 250%;
 }

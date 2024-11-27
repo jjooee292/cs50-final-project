@@ -3,6 +3,8 @@ from flask import Flask, request, flash, redirect, render_template, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
+from random import randint
+from translate_dice import translate_d4, translate_d6, translate_d8, translate_d10, translate_d12, translate_d20
 
 # Configure application
 app = Flask(__name__)
@@ -72,7 +74,6 @@ def login():
         rows = db.execute(
             "SELECT * FROM users WHERE username = ?", request.form.get("username")
         )
-        print(rows)
         if len(rows) != 1 or not check_password_hash(
             rows[0]["password_hash"], request.form.get("password")
         ):
@@ -113,7 +114,46 @@ def tools():
 @app.route("/tools/dice", methods=["GET", "POST"])
 def dice():
     if request.method == "POST":
-        return render_template("dice-roll.html")
+        dice = {'D4': request.form.get("D4"), 'D6': request.form.get("D6"), 'D8': request.form.get("D8"), 'D10': request.form.get("D10"), 'D12': request.form.get("D12"),'D20': request.form.get("D20")}
+        D4_results = []
+        D4_total = 0
+        for i in range(int(dice["D4"])):
+            roll = randint(1,4)
+            D4_total += roll
+            D4_results.append(translate_d4(roll))
+        D6_results = []
+        D6_total = 0
+        for i in range(int(dice["D6"])):
+            roll = randint(1,6)
+            D6_total += roll
+            D6_results.append(translate_d6(roll))
+        D8_results = []
+        D8_total = 0
+        for i in range(int(dice["D8"])):
+            roll = randint(1,8)
+            D8_total += roll
+            D8_results.append(translate_d8(roll))
+        D10_results = []
+        D10_total = 0
+        for i in range(int(dice["D10"])):
+            roll = randint(1,10)
+            D10_total += roll
+            D10_results.append(translate_d10(roll))
+        D12_results = []
+        D12_total = 0
+        for i in range(int(dice["D12"])):
+            roll = randint(1,12)
+            D12_total += roll
+            D12_results.append(translate_d12(roll))
+        D20_results = []
+        D20_total = 0
+        for i in range(int(dice["D20"])):
+            roll = randint(1,20)
+            D20_total += roll
+            D20_results.append(translate_d20(roll))
+        # todo: add to DB and store against user if logged in
+        # todo: add totals and grand total
+        return render_template("dice-roll.html", D4 = D4_results, D6 = D6_results, D8 = D8_results, D10 = D10_results, D12 = D12_results, D20 = D20_results, D4_t = D4_total, D6_t = D6_total, D8_t = D8_total, D10_t = D10_total, D12_t = D12_total, D20_t = D20_total)
     else:
         return render_template("dice.html")
 
