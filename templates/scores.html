@@ -6,6 +6,43 @@
 
 {% block main %}
     
+    <div class='player_cards'>
+        {% for i in players %}
+            <h3>{{ i['name'] }}</h3>
+            <p>Score:</p>
+            <p id="score">{{ i['score'] }}</p>
+            <button id="minus">- {{ increment }}</button>
+            <button id="plus">+ {{ increment }}</button>
+        {% endfor %}
+    </div>
+    <div>
+        <!--To Do: implement score saving to database?-->
+        <form action="/tools/keep-scores" method="get">
+            <button>Start Over</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const pluses = document.querySelectorAll("#plus")
+            for (let i = 0; i < pluses.length; i++){
+                pluses[i].addEventListener('click', function() {
+                    let x = {{ increment }}
+                    let score = +document.querySelectorAll("#score")[i].innerHTML
+                    score += x
+                    document.querySelectorAll("#score")[i].innerHTML = score;
+                })
+            }
+            const minuses = document.querySelectorAll("#minus")
+            for (let i = 0; i < minuses.length; i++){
+                minuses[i].addEventListener('click', function() {
+                    let x = {{ increment }}
+                    let score = +document.querySelectorAll("#score")[i].innerHTML
+                    score -= x
+                    document.querySelectorAll("#score")[i].innerHTML = score;
+                })
+            }
+        })
+    </script>
 {% endblock %}
 
 {% block footer %}

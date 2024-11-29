@@ -5,6 +5,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
 from random import randint
 from translate_dice import translate_d4, translate_d6, translate_d8, translate_d10, translate_d12, translate_d20
+from datetime import datetime
 
 # Configure application
 app = Flask(__name__)
@@ -113,6 +114,9 @@ def tools():
 
 @app.route("/tools/dice", methods=["GET", "POST"])
 def dice():
+    history = db.execute(
+        "SELECT * FROM dice_history ORDER BY id DESC LIMIT 5"
+    )
     if request.method == "POST":
         dice = {'D4': request.form.get("D4"), 'D6': request.form.get("D6"), 'D8': request.form.get("D8"), 'D10': request.form.get("D10"), 'D12': request.form.get("D12"),'D20': request.form.get("D20")}
         D4_results = []
@@ -151,12 +155,22 @@ def dice():
             roll = randint(1,20)
             D20_total += roll
             D20_results.append(translate_d20(roll))
-        # todo: add to DB and store against user if logged in
-        # todo: add totals and grand total
-        return render_template("dice-roll.html", D4 = D4_results, D6 = D6_results, D8 = D8_results, D10 = D10_results, D12 = D12_results, D20 = D20_results, D4_t = D4_total, D6_t = D6_total, D8_t = D8_total, D10_t = D10_total, D12_t = D12_total, D20_t = D20_total)
+        db.execute(
+            "INSERT INTO dice_history (user_id, date_time, D4, D6, D8, D10, D12, D20) VALUES (?,?,?,?,?,?,?,?)", session["user_id"], datetime.now().strftime("%Y-%m-%d %H:%M:%S"), D4_total, D6_total, D8_total, D10_total, D12_total, D20_total
+        )
+        return render_template("dice-roll.html", D4 = D4_results, D6 = D6_results, D8 = D8_results, D10 = D10_results, D12 = D12_results, D20 = D20_results, D4_t = D4_total, D6_t = D6_total, D8_t = D8_total, D10_t = D10_total, D12_t = D12_total, D20_t = D20_total, history = history)
     else:
-        return render_template("dice.html")
+        return render_template("dice.html", history = history)
 
-@app.route("/tools/keep-scores")
+@app.route("/tools/keep-scores", methods=["GET", "POST"])
 def scores():
-    return render_template("scores.html")
+    if request.method == "POST":
+        player_count = request.form.get("players_count")
+        increment = request.form.get("increment")
+        players = []
+        for i in range(len(request.form.getlist("player_name"))):
+            players.append({"name": request.form.getlist("player_name")[i], "score": request.form.getlist("starting_score")[i]})
+        print(players)
+        return render_template("scores.html", player_count = player_count, increment = increment, players = players)
+    else:
+        return render_template("scores-setup.html")
