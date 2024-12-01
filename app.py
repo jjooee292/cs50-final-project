@@ -114,9 +114,12 @@ def tools():
 
 @app.route("/tools/dice", methods=["GET", "POST"])
 def dice():
-    history = db.execute(
-        "SELECT * FROM dice_history ORDER BY id DESC LIMIT 5"
-    )
+    if session.get("user_id") is None:
+        history = None
+    else:   
+        history = db.execute(
+            "SELECT * FROM dice_history WHERE user_id = ? ORDER BY id DESC LIMIT 5", session.get("user_id")
+        )
     if request.method == "POST":
         dice = {'D4': request.form.get("D4"), 'D6': request.form.get("D6"), 'D8': request.form.get("D8"), 'D10': request.form.get("D10"), 'D12': request.form.get("D12"),'D20': request.form.get("D20")}
         D4_results = []
@@ -155,9 +158,10 @@ def dice():
             roll = randint(1,20)
             D20_total += roll
             D20_results.append(translate_d20(roll))
-        db.execute(
-            "INSERT INTO dice_history (user_id, date_time, D4, D6, D8, D10, D12, D20) VALUES (?,?,?,?,?,?,?,?)", session["user_id"], datetime.now().strftime("%Y-%m-%d %H:%M:%S"), D4_total, D6_total, D8_total, D10_total, D12_total, D20_total
-        )
+        if session.get("user_id") is not None:
+            db.execute(
+                "INSERT INTO dice_history (user_id, date_time, D4, D6, D8, D10, D12, D20) VALUES (?,?,?,?,?,?,?,?)", session["user_id"], datetime.now().strftime("%Y-%m-%d %H:%M:%S"), D4_total, D6_total, D8_total, D10_total, D12_total, D20_total
+            )
         return render_template("dice-roll.html", D4 = D4_results, D6 = D6_results, D8 = D8_results, D10 = D10_results, D12 = D12_results, D20 = D20_results, D4_t = D4_total, D6_t = D6_total, D8_t = D8_total, D10_t = D10_total, D12_t = D12_total, D20_t = D20_total, history = history)
     else:
         return render_template("dice.html", history = history)

@@ -75,45 +75,51 @@
         </div>
         <div>
             <h2>Previous Rolls:</h2>
-            <table>
-                {% for i in range(5) %}
-                    <tr>    
-                        {% if history[i]["D4"] > 0 %}
-                            <td>
-                                D4 total: {{ history[i]["D4"] }}                        
-                            </td>
-                        {% endif %}
-                        {% if history[i]["D6"] > 0 %}
-                            <td>
-                                D6 total: {{ history[i]["D6"] }}                        
-                            </td>
-                        {% endif %}
-                        {% if history[i]["D8"] > 0 %}
-                            <td>
-                                D8 total: {{ history[i]["D8"] }}                        
-                            </td>
-                        {% endif %}
-                        {% if history[i]["D10"] > 0 %}
-                            <td>
-                                D10 total: {{ history[i]["D10"] }}                        
-                            </td>
-                        {% endif %}
-                        {% if history[i]["D12"] > 0 %}
-                            <td>
-                                D12 total: {{ history[i]["D12"] }}                        
-                            </td>
-                        {% endif %}
-                        {% if history[i]["D20"] > 0 %}
-                            <td>
-                                D20 total: {{ history[i]["D20"] }}                        
-                            </td>
-                        {% endif %}
-                        <td>
-                            Grand Total: {{ history[i]["D4"] + history[i]["D6"] + history[i]["D8"] + history[i]["D10"] + history[i]["D12"] + history[i]["D20"] }}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </table>
+            <div>
+                {% if history == None %}
+                    <h3> To view dice roll history, <a href="/register">create an account</a> or <a href="/login">log in</a></h3>
+                {% else %}
+                    <table>
+                        {% for i in range(5) %}
+                            <tr>    
+                                {% if history[i]["D4"] > 0 %}
+                                    <td>
+                                        D4 total: {{ history[i]["D4"] }}                        
+                                    </td>
+                                {% endif %}
+                                {% if history[i]["D6"] > 0 %}
+                                    <td>
+                                        D6 total: {{ history[i]["D6"] }}                        
+                                    </td>
+                                {% endif %}
+                                {% if history[i]["D8"] > 0 %}
+                                    <td>
+                                        D8 total: {{ history[i]["D8"] }}                        
+                                    </td>
+                                {% endif %}
+                                {% if history[i]["D10"] > 0 %}
+                                    <td>
+                                        D10 total: {{ history[i]["D10"] }}                        
+                                    </td>
+                                {% endif %}
+                                {% if history[i]["D12"] > 0 %}
+                                    <td>
+                                        D12 total: {{ history[i]["D12"] }}                        
+                                    </td>
+                                {% endif %}
+                                {% if history[i]["D20"] > 0 %}
+                                    <td>
+                                        D20 total: {{ history[i]["D20"] }}                        
+                                    </td>
+                                {% endif %}
+                                <td>
+                                    Grand Total: {{ history[i]["D4"] + history[i]["D6"] + history[i]["D8"] + history[i]["D10"] + history[i]["D12"] + history[i]["D20"] }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            <div>
         </div>
     </div>
 {% endblock %}
