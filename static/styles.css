@@ -48,13 +48,62 @@ License. */
 
 #action_buttons {
   margin-right: 20px;
+  margin-bottom: 5px;
 }
 
 td {
   width: 150px;
 }
 
+@keyframes roll {
+  0% {
+    transform: translate();
+  }
+  10% {
+    transform: translate(-100px, -30px);
+  }
+  40% {
+    transform: translate(-12px, 0px);
+  }
+  60% {
+    transform: translate(-10px, -20px);
+  }
+  70% {
+    transform: translate(-8px, 0px);
+  }
+  80% {
+    transform: translate(-3px, -10px);
+  }
+  100% {
+    transform: translate();
+  }
+}
+
 #dice_result {
   font-family: GamingDice;
-  font-size: 250%;
+  font-size: 400%;
+  animation: roll;
+  animation-duration: 0.5s;
 }
+
+.roll_table {
+  display: flex;
+  flex-direction: column;
+}
+
+.roll_row {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.grand_row {
+  justify-content: flex-end;
+  display: flex;
+}
+
+
+
+
+
+

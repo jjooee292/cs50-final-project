@@ -108,6 +108,28 @@ def games():
 def scrabble():
     return render_template("scrabble.html")
 
+@app.route("/games/monopoly", methods=["GET", "POST"])
+def monopoly():
+    if request.method == "POST":
+        players = []
+        for i in range(len(request.form.getlist("player_name"))):
+            players.append({"name": request.form.getlist("player_name")[i], "cash": 1500})
+        print(players)
+        return render_template("monopoly.html")
+    else:
+        return render_template("monopoly-setup.html")
+    
+@app.route("/games/monopoly/load", methods=["GET", "POST"])
+def monopoly_load():
+    if request.method == "POST":
+        players = []
+        for i in range(len(request.form.getlist("player_name"))):
+            players.append({"name": request.form.getlist("player_name")[i], "cash": request.form.getlist("cash")[i]})
+        print(players)
+        return render_template("monopoly.html")
+    else:
+        return render_template("monopoly-load.html")
+
 @app.route("/tools")
 def tools():
     return render_template("tools.html")

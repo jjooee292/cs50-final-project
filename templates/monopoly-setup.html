@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Monopoly
+{% endblock %}
+
+{% block main %}
+<h1>Set up your players for Monopoly</h1>
+<form method="post", action="/games/monopoly">
+    <p>Number of players:</p>
+    <input id="player_count" min="0" name="players_count" type="number">
+    <button id="player_count_button" type="button">Select</button>
+    <div id="hidden_form">
+
+    </div>
+</form>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector("#player_count_button").addEventListener('click', function() {
+            let x = document.querySelector("#player_count").value
+            let text = ""
+            for (let i = 0; i < x; i++) {
+                text += "<div class='player_cards'><h3>Player " + (i + 1) + ":</h3> <p>Name: </p> <input name='player_name' placeholder='Name' type='text'></div>"
+            }
+            text += "<div><button>Start</button></div>"
+            document.querySelector('#hidden_form').innerHTML = text;
+        })
+    })
+</script>
+{% endblock %}
+
+{% block footer %}
+<p>Monopoly: click here to <a id="monopoly_load" href="/games/monopoly/load">load a previous game</a> instead</p>
+{% endblock %}
