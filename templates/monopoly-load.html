@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block main %}
-<form method="post", action="/games/monopoly/load">
+<ut method="post", action="/games/monopoly/load">
     <div class='player_cards'>
-        <input name='player_name' value="PLACEHOLDER_NAME" type='text' disabled="true">
-        <input name='cash' value="999" type='number' disabled="true">
+        <select></select>
     </div>
     <div>
-        <button>Start</button>
+        <input style="display:None;" name="load_id">
+        <button>Load</button>
     </div>
 </form>
 {% endblock %}

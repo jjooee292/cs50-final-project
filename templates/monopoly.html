@@ -5,7 +5,26 @@
 {% endblock %}
 
 {% block main %}
-    
+<form action="/games/monopoly/save" method="post">
+{% for i in players %}
+    <div class='player_cards'>
+        <h3 id="name">{{ i['name'] }}</h3>
+        <p>Cash: <a id="cash">{{ i['cash'] }}</a></p>
+        <input type="number">
+        <button id="plus">+</button>
+        <button id="plus">-</button>
+        <p>Cards: <a id="cards">{{ i['cards'] }}</a></p>
+        <p>Houses: <a id="houses">{{ i['houses'] }}</a></p>
+        <p>Hotels: <a id="hotels">{{ i['hotels'] }}</a></p>
+        <input name="player_name" style="display:None;">
+        <input name="cash" style="display:None;">
+        <input name="cards" style="display:None;">
+        <input name="houses" style="display:None;">
+        <input name="hotels" style="display:None;">
+    </div>
+{% endfor %}
+<button>Save</button>
+</form>
 {% endblock %}
 
 {% block footer %}

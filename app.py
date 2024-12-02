@@ -113,9 +113,9 @@ def monopoly():
     if request.method == "POST":
         players = []
         for i in range(len(request.form.getlist("player_name"))):
-            players.append({"name": request.form.getlist("player_name")[i], "cash": 1500})
+            players.append({"name": request.form.getlist("player_name")[i], "cash": 1500, "cards": "", "houses": "", "hotels": ""})
         print(players)
-        return render_template("monopoly.html")
+        return render_template("monopoly.html", players = players)
     else:
         return render_template("monopoly-setup.html")
     
@@ -123,12 +123,34 @@ def monopoly():
 def monopoly_load():
     if request.method == "POST":
         players = []
+        print(request.form.getlist("player_name"))
+        print(request.form.getlist("cash"))
         for i in range(len(request.form.getlist("player_name"))):
             players.append({"name": request.form.getlist("player_name")[i], "cash": request.form.getlist("cash")[i]})
         print(players)
         return render_template("monopoly.html")
     else:
         return render_template("monopoly-load.html")
+
+@app.route("/games/monopoly/save", methods=["POST"])
+def monopoly_save():
+    name = []
+    cash = []
+    cards = []
+    houses = []
+    hotels = []
+    for i in range(len(request.form.getlist("player_name"))):
+        name.append(request.form.getlist("player_name")[i])
+        cash.append(request.form.getlist("cash")[i])
+        cards.append(request.form.getlist("cards")[i])
+        houses.append(request.form.getlist("houses")[i])
+        hotels.append(request.form.getlist("hotels")[i])
+    for i in range(len(request.form.getlist("player_name"))):
+        db.execute(
+            "INSERT INTO monopoly (user_id, player_name, cash, cards, houses, hotels, date_time) VALUES (?,?,?,?,?,?,?)", session["user_id"], name[i], cash[i], cards[i], houses[i], hotels[i], datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 
+        )
+    flash("Monopoly game saved successfully")
+    return redirect("/")
 
 @app.route("/tools")
 def tools():
