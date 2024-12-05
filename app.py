@@ -6,6 +6,9 @@ from functools import wraps
 from random import randint
 from translate_dice import translate_d4, translate_d6, translate_d8, translate_d10, translate_d12, translate_d20
 from datetime import datetime
+import json
+
+MONOPOLY_CARDS = 29
 
 # Configure application
 app = Flask(__name__)
@@ -113,8 +116,7 @@ def monopoly():
     if request.method == "POST":
         players = []
         for i in range(len(request.form.getlist("player_name"))):
-            players.append({"name": request.form.getlist("player_name")[i], "cash": 1500, "cards": "", "houses": "", "hotels": ""})
-        print(players)
+            players.append({"name": request.form.getlist("player_name")[i], "cash": 1500, "houses": "0", "hotels": "0"})
         return render_template("monopoly.html", players = players)
     else:
         return render_template("monopoly-setup.html")
@@ -123,11 +125,8 @@ def monopoly():
 def monopoly_load():
     if request.method == "POST":
         players = []
-        print(request.form.getlist("player_name"))
-        print(request.form.getlist("cash"))
         for i in range(len(request.form.getlist("player_name"))):
-            players.append({"name": request.form.getlist("player_name")[i], "cash": request.form.getlist("cash")[i]})
-        print(players)
+            players.append({"name": request.form.getlist("player_name")[i], "cash": request.form.getlist("cash")[i], "cards": request.form.getlist("cards")[i], })
         return render_template("monopoly.html")
     else:
         return render_template("monopoly-load.html")
@@ -141,13 +140,15 @@ def monopoly_save():
     hotels = []
     for i in range(len(request.form.getlist("player_name"))):
         name.append(request.form.getlist("player_name")[i])
-        cash.append(request.form.getlist("cash")[i])
-        cards.append(request.form.getlist("cards")[i])
-        houses.append(request.form.getlist("houses")[i])
-        hotels.append(request.form.getlist("hotels")[i])
+        cash.append(request.form.getlist("cash_submit")[i])
+        houses.append(request.form.getlist("houses_submit")[i])
+        hotels.append(request.form.getlist("hotels_submit")[i])
+        fStringName = request.form.getlist("player_name")[i]
+        cards.append(request.form.getlist(f"cards_{fStringName}"))
+    print(name,cash,cards,houses,hotels)
     for i in range(len(request.form.getlist("player_name"))):
         db.execute(
-            "INSERT INTO monopoly (user_id, player_name, cash, cards, houses, hotels, date_time) VALUES (?,?,?,?,?,?,?)", session["user_id"], name[i], cash[i], cards[i], houses[i], hotels[i], datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 
+            "INSERT INTO monopoly (user_id, player_name, cash, cards, houses, hotels, date_time) VALUES (?,?,?,?,?,?,?)", session.get("user_id"), name[i], cash[i], json.dumps(cards[i]), houses[i], hotels[i], datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         )
     flash("Monopoly game saved successfully")
     return redirect("/")
@@ -218,7 +219,6 @@ def scores():
         players = []
         for i in range(len(request.form.getlist("player_name"))):
             players.append({"name": request.form.getlist("player_name")[i], "score": request.form.getlist("starting_score")[i]})
-        print(players)
         return render_template("scores.html", player_count = player_count, increment = increment, players = players)
     else:
         return render_template("scores-setup.html")
