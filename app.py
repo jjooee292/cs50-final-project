@@ -8,8 +8,6 @@ from translate_dice import translate_d4, translate_d6, translate_d8, translate_d
 from datetime import datetime
 import json
 
-MONOPOLY_CARDS = 29
-
 # Configure application
 app = Flask(__name__)
 
@@ -112,26 +110,38 @@ def scrabble():
     return render_template("scrabble.html")
 
 @app.route("/games/monopoly", methods=["GET", "POST"])
+@login_required
 def monopoly():
     if request.method == "POST":
         players = []
         for i in range(len(request.form.getlist("player_name"))):
-            players.append({"name": request.form.getlist("player_name")[i], "cash": 1500, "houses": "0", "hotels": "0"})
+            players.append({"player_name": request.form.getlist("player_name")[i], "cash": 1500, "houses": "0", "hotels": "0"})
         return render_template("monopoly.html", players = players)
     else:
         return render_template("monopoly-setup.html")
     
 @app.route("/games/monopoly/load", methods=["GET", "POST"])
+@login_required
 def monopoly_load():
     if request.method == "POST":
-        players = []
-        for i in range(len(request.form.getlist("player_name"))):
-            players.append({"name": request.form.getlist("player_name")[i], "cash": request.form.getlist("cash")[i], "cards": request.form.getlist("cards")[i], })
-        return render_template("monopoly.html")
+        players = db.execute (
+            "SELECT * FROM monopoly WHERE user_id = ? AND session_id = ?", session.get("user_id"), int(request.form.get("load_file"))
+        )
+        for i in players:
+            i["cards"] = json.loads(i["cards"])
+        print(players)
+        return render_template("monopoly.html", players = players)
+        ## TO DO: handle the ticking of property boxes owned by player upon load with some javascript or jinja code 
     else:
-        return render_template("monopoly-load.html")
+        saves = db.execute (
+            "SELECT * FROM monopoly WHERE user_id = ?", session.get("user_id")
+        )
+        for i in saves:
+            i["cards"] = json.loads(i["cards"])
+        return render_template("monopoly-load.html", saves=saves)
 
 @app.route("/games/monopoly/save", methods=["POST"])
+@login_required
 def monopoly_save():
     name = []
     cash = []
@@ -145,10 +155,15 @@ def monopoly_save():
         hotels.append(request.form.getlist("hotels_submit")[i])
         fStringName = request.form.getlist("player_name")[i]
         cards.append(request.form.getlist(f"cards_{fStringName}"))
-    print(name,cash,cards,houses,hotels)
-    for i in range(len(request.form.getlist("player_name"))):
+    db.execute(
+        "INSERT INTO monopoly_sessions (user_id, date_time) VALUES (?,?)", session.get("user_id"), datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    )
+    monopoly_session_id = db.execute(
+        "SELECT id FROM monopoly_sessions WHERE user_id = ? ORDER BY date_time DESC LIMIT 1", session.get("user_id")
+    )[0]["id"]
+    for i in range(len(name)):
         db.execute(
-            "INSERT INTO monopoly (user_id, player_name, cash, cards, houses, hotels, date_time) VALUES (?,?,?,?,?,?,?)", session.get("user_id"), name[i], cash[i], json.dumps(cards[i]), houses[i], hotels[i], datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            "INSERT INTO monopoly (user_id, player_name, cash, cards, houses, hotels, session_id) VALUES (?,?,?,?,?,?,?)", session.get("user_id"), name[i], cash[i], json.dumps(cards[i]), houses[i], hotels[i], monopoly_session_id
         )
     flash("Monopoly game saved successfully")
     return redirect("/")

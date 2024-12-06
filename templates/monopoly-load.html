@@ -5,15 +5,32 @@
 {% endblock %}
 
 {% block main %}
-<ut method="post", action="/games/monopoly/load">
-    <div class='player_cards'>
-        <select></select>
-    </div>
-    <div>
-        <input style="display:None;" name="load_id">
-        <button>Load</button>
-    </div>
-</form>
+<div>
+    {% for i in saves %}
+         <div>
+                <h3>{{ i["player_name"] }}</h3>
+                <p>£{{ i["cash"] }}</p>
+                <p>
+                {% for i in i["cards"] %}
+                    {{ i }}
+                {% endfor %}
+                </p>
+                <p>Houses: {{ i["houses"] }}</p>
+                <p>Hotels: {{ i["hotels"] }}</p>
+                <p>{{ i["date_time"] }}</p>
+                <form method="post", action="/games/monopoly/load" name="load">
+                    <input name="load_file" style="display:None;" value="{{ i["session_id"] }}">
+                    {% if loop.nextitem %}
+                        {% if loop.nextitem["session_id"] != i["session_id"] %}
+                            <button type="submit">Load</button>
+                        {% endif %}
+                    {% else %}
+                        <button type="submit">Load</button>
+                    {% endif %}
+                </form>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
 
 {% block footer %}

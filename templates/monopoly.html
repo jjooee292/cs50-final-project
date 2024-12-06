@@ -9,69 +9,69 @@
     <div>
         {% for i in players %}
             <div class='player_cards'>
-                <h3 id="name">{{ i['name'] }}</h3>
+                <h3 id="name">{{ i['player_name'] }}</h3>
                 <p>Cash: £<a id="cash">{{ i['cash'] }}</a></p>
                 <button type="button" id="cash_minus">-</button>
                 <input id="increment" type="number" form="ignore">
                 <button type="button" id="cash_plus">+</button>
                 <p>Cards: </p>
-                <input type="checkbox" id="p1" name="cards_{{ i['name'] }}" value="Old Kent Road">
+                <input type="checkbox" id="p1" name="cards_{{ i['player_name'] }}" value="Old Kent Road">
                 <label for="p1" style="background-color: brown;">Old Kent Road</label><br>
-                <input type="checkbox" id="p2" name="cards_{{ i['name'] }}" value="Whitechapel Road">
+                <input type="checkbox" id="p2" name="cards_{{ i['player_name'] }}" value="Whitechapel Road">
                 <label for="p2" style="background-color: brown;">Whitechapel Road</label><br>
-                <input type="checkbox" id="p3" name="cards_{{ i['name'] }}" value="The Angel Islington">
+                <input type="checkbox" id="p3" name="cards_{{ i['player_name'] }}" value="The Angel Islington">
                 <label for="p3" style="background-color: lightskyblue;">The Angel Islington</label><br>
-                <input type="checkbox" id="p4" name="cards_{{ i['name'] }}" value="Euston Road">
+                <input type="checkbox" id="p4" name="cards_{{ i['player_name'] }}" value="Euston Road">
                 <label for="p4" style="background-color: lightskyblue;">Euston Road</label><br>
-                <input type="checkbox" id="p5" name="cards_{{ i['name'] }}" value="Pentonville Road">
+                <input type="checkbox" id="p5" name="cards_{{ i['player_name'] }}" value="Pentonville Road">
                 <label for="p5" style="background-color: lightskyblue;">Pentonville Road</label><br>
-                <input type="checkbox" id="p6" name="cards_{{ i['name'] }}" value="Pall Mall">
+                <input type="checkbox" id="p6" name="cards_{{ i['player_name'] }}" value="Pall Mall">
                 <label for="p6" style="background-color: magenta;">Pall Mall</label><br>
-                <input type="checkbox" id="p7" name="cards_{{ i['name'] }}" value="Whitehall">
+                <input type="checkbox" id="p7" name="cards_{{ i['player_name'] }}" value="Whitehall">
                 <label for="p7" style="background-color: magenta;">Whitehall</label><br>
-                <input type="checkbox" id="p8" name="cards_{{ i['name'] }}" value="Northumberland Avenue">
+                <input type="checkbox" id="p8" name="cards_{{ i['player_name'] }}" value="Northumberland Avenue">
                 <label for="p8" style="background-color: magenta;">Northumberland Avenue</label><br>
-                <input type="checkbox" id="p9" name="cards_{{ i['name'] }}" value="Bow Street">
+                <input type="checkbox" id="p9" name="cards_{{ i['player_name'] }}" value="Bow Street">
                 <label for="p1" style="background-color: orange;">Bow Street</label><br>
-                <input type="checkbox" id="p10" name="cards_{{ i['name'] }}" value="Great Marlborough Street">
+                <input type="checkbox" id="p10" name="cards_{{ i['player_name'] }}" value="Great Marlborough Street">
                 <label for="p10" style="background-color: orange;">Great Marlborough Street</label><br>
-                <input type="checkbox" id="p11" name="cards_{{ i['name'] }}" value="Vine Street">
+                <input type="checkbox" id="p11" name="cards_{{ i['player_name'] }}" value="Vine Street">
                 <label for="p11" style="background-color: orange;">Vine Street</label><br>
-                <input type="checkbox" id="p12" name="cards_{{ i['name'] }}" value="Strand">
+                <input type="checkbox" id="p12" name="cards_{{ i['player_name'] }}" value="Strand">
                 <label for="p12" style="background-color: red;">Strand</label><br>
-                <input type="checkbox" id="p13" name="cards_{{ i['name'] }}" value="Fleet Street">
+                <input type="checkbox" id="p13" name="cards_{{ i['player_name'] }}" value="Fleet Street">
                 <label for="p13" style="background-color: red;">Fleet Street</label><br>
-                <input type="checkbox" id="p14" name="cards_{{ i['name'] }}" value="Trafalgar Square">
+                <input type="checkbox" id="p14" name="cards_{{ i['player_name'] }}" value="Trafalgar Square">
                 <label for="p14" style="background-color: red;">Trafalgar Square</label><br>
-                <input type="checkbox" id="p15" name="cards_{{ i['name'] }}" value="Leicester Square">
+                <input type="checkbox" id="p15" name="cards_{{ i['player_name'] }}" value="Leicester Square">
                 <label for="p15" style="background-color: yellow;">Leicester Square</label><br>
-                <input type="checkbox" id="p16" name="cards_{{ i['name'] }}" value="Coventry Street">
+                <input type="checkbox" id="p16" name="cards_{{ i['player_name'] }}" value="Coventry Street">
                 <label for="p16" style="background-color: yellow;">Coventry Street</label><br>
-                <input type="checkbox" id="p17" name="cards_{{ i['name'] }}" value="Piccadilly">
+                <input type="checkbox" id="p17" name="cards_{{ i['player_name'] }}" value="Piccadilly">
                 <label for="p17" style="background-color: yellow;">Piccadilly</label><br>
-                <input type="checkbox" id="p18" name="cards_{{ i['name'] }}" value="Regent Street">
+                <input type="checkbox" id="p18" name="cards_{{ i['player_name'] }}" value="Regent Street">
                 <label for="p18" style="background-color: green;">Regent Street</label><br>
-                <input type="checkbox" id="p19" name="cards_{{ i['name'] }}" value="Oxford Street">
+                <input type="checkbox" id="p19" name="cards_{{ i['player_name'] }}" value="Oxford Street">
                 <label for="p19" style="background-color: green;">Oxford Street</label><br>
-                <input type="checkbox" id="p20" name="cards_{{ i['name'] }}" value="Bond Street">
+                <input type="checkbox" id="p20" name="cards_{{ i['player_name'] }}" value="Bond Street">
                 <label for="p20" style="background-color: green;">Bond Street</label><br>
-                <input type="checkbox" id="p21" name="cards_{{ i['name'] }}" value="Park Lane">
+                <input type="checkbox" id="p21" name="cards_{{ i['player_name'] }}" value="Park Lane">
                 <label for="p21" style="background-color: darkblue;">Park Lane</label><br>
-                <input type="checkbox" id="p22" name="cards_{{ i['name'] }}" value="Mayfair">
+                <input type="checkbox" id="p22" name="cards_{{ i['player_name'] }}" value="Mayfair">
                 <label for="p22" style="background-color: darkblue;">Mayfair</label><br>
-                <input type="checkbox" id="p23" name="cards_{{ i['name'] }}" value="King's Cross Station">
+                <input type="checkbox" id="p23" name="cards_{{ i['player_name'] }}" value="King's Cross Station">
                 <label for="p23" style="background-color: grey;">King's Cross Station</label><br>
-                <input type="checkbox" id="p24" name="cards_{{ i['name'] }}" value="Marylebone Station">
+                <input type="checkbox" id="p24" name="cards_{{ i['player_name'] }}" value="Marylebone Station">
                 <label for="p24" style="background-color: grey;">Marylebone Station</label><br>
-                <input type="checkbox" id="p25" name="cards_{{ i['name'] }}" value="Fenchurch Street Station">
+                <input type="checkbox" id="p25" name="cards_{{ i['player_name'] }}" value="Fenchurch Street Station">
                 <label for="p25" style="background-color: grey;">Fenchurch Street Station</label><br>
-                <input type="checkbox" id="p26" name="cards_{{ i['name'] }}" value="Liverpool Street Station">
+                <input type="checkbox" id="p26" name="cards_{{ i['player_name'] }}" value="Liverpool Street Station">
                 <label for="p26" style="background-color: grey;">Liverpool Street Station</label><br>
-                <input type="checkbox" id="p27" name="cards_{{ i['name'] }}" value="Electric Company">
+                <input type="checkbox" id="p27" name="cards_{{ i['player_name'] }}" value="Electric Company">
                 <label for="p27" style="background-color: powderblue;">Electric Company</label><br>
-                <input type="checkbox" id="p28" name="cards_{{ i['name'] }}" value="Water Company">
+                <input type="checkbox" id="p28" name="cards_{{ i['player_name'] }}" value="Water Company">
                 <label for="p28" style="background-color: powderblue;">Water Company</label><br>
-                <input type="checkbox" id="p29" name="cards_{{ i['name'] }}" value="Get out of jail free">
+                <input type="checkbox" id="p29" name="cards_{{ i['player_name'] }}" value="Get out of jail free">
                 <label for="p29">Get out of jail free</label><br>
                 <p>Houses: <p id="houses" class="tally">{{ i['houses'] }}</p></p>
                 <button type="button" id="minus">-</button>
