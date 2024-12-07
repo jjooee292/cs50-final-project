@@ -134,7 +134,7 @@ def monopoly_load():
         ## TO DO: handle the ticking of property boxes owned by player upon load with some javascript or jinja code 
     else:
         saves = db.execute (
-            "SELECT * FROM monopoly WHERE user_id = ?", session.get("user_id")
+            "SELECT * FROM monopoly WHERE user_id = ? ORDER BY session_id DESC", session.get("user_id")
         )
         for i in saves:
             i["cards"] = json.loads(i["cards"])
