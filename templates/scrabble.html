@@ -5,7 +5,17 @@
 {% endblock %}
 
 {% block main %}
-    
+<h1>Scrabble Scores</h1>
+<div>   
+    <h2>Input a word</h2>
+    <form method="post", action="/games/scrabble">
+        <input type="text" name="word">
+        <button>Submit</button>
+    </form>
+</div>
+<div>
+    <p>Scrabble Score: <strong>{{ word }}</strong></p>
+</div>
 {% endblock %}
 
 {% block footer %}

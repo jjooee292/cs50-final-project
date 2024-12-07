@@ -6,7 +6,15 @@ from functools import wraps
 from random import randint
 from translate_dice import translate_d4, translate_d6, translate_d8, translate_d10, translate_d12, translate_d20
 from datetime import datetime
+import string
 import json
+
+# Config Wordnik API
+from wordnik import *
+apiUrl = 'http://api.wordnik.com/v4'
+apiKey = '2bqocrwqkfk7jetq0a4kz6c51dwmro7olaj8sc5ukx2k4fhxb'
+client = swagger.ApiClient(apiKey, apiUrl)
+wordApi = WordApi.WordApi(client)
 
 # Configure application
 app = Flask(__name__)
@@ -105,10 +113,6 @@ def account():
 def games():
     return render_template("games.html")
 
-@app.route("/games/scrabble")
-def scrabble():
-    return render_template("scrabble.html")
-
 @app.route("/games/monopoly", methods=["GET", "POST"])
 @login_required
 def monopoly():
@@ -167,6 +171,21 @@ def monopoly_save():
         )
     flash("Monopoly game saved successfully")
     return redirect("/")
+
+@app.route("/games/scrabble", methods=["GET", "POST"])
+def scrabble():
+    if request.method == "POST":
+        word = request.form.get("word").lower()
+        print(word)
+        try:
+            result = wordApi.getScrabbleScore(word).value
+            ## add to Database? (history?)
+        except:
+            result = "Invalid Word"
+        print(result)
+        return render_template("scrabble.html", word=result)
+    else:
+        return render_template("scrabble.html")
 
 @app.route("/tools")
 def tools():

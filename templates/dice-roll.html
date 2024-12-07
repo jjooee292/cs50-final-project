@@ -75,8 +75,10 @@
         <div>
             <h2>Previous Rolls:</h2>
             <div>
-                {% if history == None %}
-                    <h3> To view dice roll history, <a href="/register">create an account</a> or <a href="/login">log in</a></h3>
+                {% if history == None  %}    
+                    <p> To view dice roll history, <a href="/register">create an account</a> or <a href="/login">log in</a></p>
+                {% elif history | length == 0 %}
+                    <p> To view dice roll history, roll some dice!</p>
                 {% else %}
                     <table class="table">
                         {% for i in range(5) %}
