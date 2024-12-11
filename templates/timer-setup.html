@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Timer
+{% endblock %}
+
+{% block main %}
+    <h1>Timer</h1>
+    
+        <form action="/tools/timer" method="post">
+            <div style="padding-left: 30%; padding-right: 30%; display: flex; justify-content:space-around;">
+                <input type="number" min="0" max="24" name="hours" value="00">
+                <p>:</p>
+                <input type="number" min="0" max="59" name="mins" value="00">
+                <p>:</p>
+                <input type="number" min="0" max="59" name="secs" value="00">
+                <button>Go</button>
+            </div>
+        </form>
+    
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

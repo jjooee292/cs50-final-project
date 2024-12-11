@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Timer
+{% endblock %}
+
+{% block main %}
+    <h1>Timer</h1>
+    <div style="padding-left: 45%; padding-right: 45%; display: flex; justify-content:space-around;">
+       <p id="timer_h">{{ hours }}</p><p>:</p><p id="timer_m">{{ mins }}</p><p>:</p><p id="timer_s">{{ secs }}</p> 
+    </div>
+    <button type="button" id="start" onclick="start()">Start</button>
+    <button type="button" id="pause">Pause</button>
+    <form action="/tools/timer" method="get">
+        <button id="reset">Reset</button>
+    </form>
+    <script>
+        function start() {   
+            document.getElementById("start").disabled = true;
+            myInterval = setInterval(function() {
+                let timer_s = document.getElementById("timer_s").innerHTML
+                let timer_m = document.getElementById("timer_m").innerHTML
+                let timer_h = document.getElementById("timer_h").innerHTML
+                let new_time_s = 0
+                let new_time_m = 0
+                let new_time_h = 0
+                if (timer_s == 0 && timer_m == 0 && timer_h == 0) {
+                    return;
+                }
+                else {
+                    if (timer_s == 0) {
+                        new_time_s = "59"
+                        if (timer_m == 0) {
+                            new_time_m = "59"
+                            if (timer_h > 0) {
+                                new_time_h = timer_h - 1
+                                document.getElementById("timer_h").innerHTML = new_time_h
+                            }
+                        }
+                        else {
+                            new_time_m = timer_m - 1
+                        }
+                        document.getElementById("timer_m").innerHTML = new_time_m
+                    }
+                    else {
+                        new_time_s = timer_s - 1
+                    }
+                    document.getElementById("timer_s").innerHTML = new_time_s
+                }
+            }, 1000)
+            document.getElementById("pause").addEventListener('click', function() {
+                clearInterval(myInterval)
+                document.getElementById("start").disabled = false;
+            })
+        }
+    </script>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

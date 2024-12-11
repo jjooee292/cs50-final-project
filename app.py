@@ -256,3 +256,13 @@ def scores():
         return render_template("scores.html", player_count = player_count, increment = increment, players = players)
     else:
         return render_template("scores-setup.html")
+    
+@app.route("/tools/timer", methods=["GET", "POST"])
+def timer():
+    if request.method == "POST":
+        hours = request.form.get("hours")
+        mins = request.form.get("mins")
+        secs = request.form.get("secs")
+        return render_template("timer.html", hours = hours, mins = mins, secs = secs)
+    else:
+        return render_template("timer-setup.html")
