@@ -9,12 +9,27 @@
 <div>   
     <h2>Input a word</h2>
     <form method="post", action="/games/scrabble">
-        <input type="text" name="word">
+        <div>
+            <label for="word">Input Word: </label>
+            <input type="text" name="word">
+        </div>
+        <label for="dbl-wrd">Double Word</label>
+        <input type="checkbox" name="dbl-wrd"><br>
+        <label for="trb-wrd">Triple Word</label>
+        <input type="checkbox" name="trb-wrd"><br>
+        <label for="dbl-ltr">Double Letters: </label>
+        <input type="text" name="dbl-ltr"><br>
+        <label for="trb-ltr">Triple Letters: </label>
+        <input type="text" name="trb-ltr"><br>
+        <label for="blank">Blank Tiles: </label>
+        <input type="text" name="blank"><br>
         <button>Submit</button>
     </form>
 </div>
 <div>
-    <p>Scrabble Score: <strong>{{ word }}</strong></p>
+    <h2>Results</h2>
+    <p>Base Scrabble score: <strong>{{ word }}</strong></p>
+    <p>Total modified score: <strong>{{ score }}</strong></p>
 </div>
 {% endblock %}
 

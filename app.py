@@ -6,7 +6,7 @@ from functools import wraps
 from random import randint
 from translate_dice import translate_d4, translate_d6, translate_d8, translate_d10, translate_d12, translate_d20
 from datetime import datetime
-import string
+from scrabble import blanks, triple_letter, double_letter, triple_word, double_word
 import json
 
 # Config Wordnik API
@@ -176,14 +176,30 @@ def monopoly_save():
 def scrabble():
     if request.method == "POST":
         word = request.form.get("word").lower()
-        print(word)
         try:
             result = wordApi.getScrabbleScore(word).value
-            ## add to Database? (history?)
+            modified_result = result
+            if request.form.get("blank"): 
+                for i in blanks(request.form.get("blank")):
+                    modified_result = modified_result - i
+            if request.form.get("dbl-ltr"):
+                for i in double_letter(request.form.get("dbl-ltr")):
+                    modified_result = modified_result + i
+            if request.form.get("trb-ltr"):
+                for i in triple_letter(request.form.get("trb-ltr")):
+                    modified_result = modified_result + i
+            if request.form.get("dbl-wrd"):
+                modified_result = double_word(modified_result)
+            if request.form.get("trb-wrd"):
+                modified_result = triple_word(modified_result)
+            print(result)
+            print(modified_result)
         except:
             result = "Invalid Word"
-        print(result)
-        return render_template("scrabble.html", word=result)
+            modified_result = "Invalid Word"
+            print(result)
+            print(modified_result)
+        return render_template("scrabble.html", word=result, score=modified_result)
     else:
         return render_template("scrabble.html")
 
@@ -260,9 +276,17 @@ def scores():
 @app.route("/tools/timer", methods=["GET", "POST"])
 def timer():
     if request.method == "POST":
-        hours = request.form.get("hours")
-        mins = request.form.get("mins")
-        secs = request.form.get("secs")
-        return render_template("timer.html", hours = hours, mins = mins, secs = secs)
+        hours = int(request.form.get("hours"))
+        print(int(hours))
+        if int(hours) < 10:
+            hours = f"0{hours}"
+        mins = int(request.form.get("mins"))
+        if int(mins) < 10:
+            mins = f"0{mins}"
+        secs = int(request.form.get("secs"))
+        if int(secs) < 10:
+            secs = f"0{secs}"
+        audio = request.form.get("timer-chime")
+        return render_template("timer.html", hours = hours, mins = mins, secs = secs, audio=audio)
     else:
         return render_template("timer-setup.html")

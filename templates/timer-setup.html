@@ -14,8 +14,15 @@
                 <input type="number" min="0" max="59" name="mins" value="00">
                 <p>:</p>
                 <input type="number" min="0" max="59" name="secs" value="00">
-                <button>Go</button>
             </div>
+            <select name="timer-chime">
+                <option value="alarm" selected>Alarm (default)</option>
+                <option value="chime" >Chime</option>
+                <option value="buzzer" >Buzzer</option>
+                <option value="medieval" >Medieval</option>
+                <option value="cosmic" >Cosmic</option>
+            </select>
+            <button>Go</button>
         </form>
     
 {% endblock %}
