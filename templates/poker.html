@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Poker
+{% endblock %}
+
+{% block main %}
+    <h1>Poker Hands</h1>
+    <p>By combining the cards on the table, and in your hand, what is the best 5 card hand you can create..?</p>
+    <ol id="poker-hands-list" style="display:flex; flex-wrap: wrap;">
+        <li>
+            <h3>Royal Flush</h3>
+            <div>
+                <img src="/static/poker/royal-flush.png" style="width:200px; height:45px;">
+            </div>
+            Highest possible straight in-suit.
+        </li>
+        <li>
+            <h3>Straight Flush</h3>
+            <div>
+                <img src="/static/poker/straight-flush.png" style="width:200px; height:45px;">
+            </div>
+            Five consecutive cards in-suit.
+        </li>
+        <li>
+            <h3>Four of a Kind</h3>
+            <div>
+                <img src="/static/poker/four-of-a-kind.png" style="width:200px; height:45px;">
+            </div>
+            All four of a single rank card, one of each suit (1 unused card).
+        </li>
+        <li>
+            <h3>Full House</h3>
+            <div>
+                <img src="/static/poker/full-house.png" style="width:200px; height:45px;">
+            </div>
+            Any Pair, and any Three-of-a-kind, together.
+        </li>
+        <li>
+            <h3>Flush</h3>
+            <div>
+                <img src="/static/poker/flush.png" style="width:200px; height:45px;">
+            </div>
+            Five cards non-consecutive cards of the same suit.<br>(The highest ranked card defines the hand, i.e. 'King flush').
+        </li>
+        <li>
+            <h3>Straight</h3>
+            <div>
+                <img src="/static/poker/straight.png" style="width:200px; height:45px;">
+            </div>
+            Five consecutive cards, not in-suit. 
+        </li>
+        <li>
+            <h3>Three of a Kind</h3>
+            <div>
+                <img src="/static/poker/three-of-a-kind.png" style="width:200px; height:45px;">
+            </div>
+            Three of the same ranked card (2 unused cards).
+        </li>
+        <li>
+            <h3>Two Pair</h3>
+            <div>
+                <img src="/static/poker/two-pair.png" style="width:200px; height:45px;">
+            </div>
+            Two of the same ranked card, and two of another. (1 unused card).
+        </li>
+        <li>
+            <h3>Pair</h3>
+            <div>
+                <img src="/static/poker/pair.png" style="width:200px; height:45px;">
+            </div>
+            Two of the same ranked card (3 unused cards).
+        </li>
+        <li>
+            <h3>High Card</h3>
+            <div>
+                <img src="/static/poker/high-card.png" style="width:200px; height:45px;">
+            </div>
+            Your one highest ranked card (4 unused cards).<br>This is the worst possible hand.
+        </li>
+    </ol>
+
+<p>The player who has the highest ranking hand wins.<br>If hand ranks match, the hand with the highest card values wins.<br>If there is still a tie, the highest ranked unused cards (if any) decide the winner.</p>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

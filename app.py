@@ -174,8 +174,16 @@ def monopoly_save():
 
 @app.route("/games/scrabble", methods=["GET", "POST"])
 def scrabble():
+    if session.get("user_id") is None:
+            history = None
+    else:   
+        history = db.execute(
+            "SELECT * FROM scrabble WHERE user_id = ? ORDER BY id DESC LIMIT 5", session.get("user_id")
+        )
     if request.method == "POST":
         word = request.form.get("word").lower()
+        if not word:
+            return redirect("/games/scrabble")
         try:
             result = wordApi.getScrabbleScore(word).value
             modified_result = result
@@ -192,16 +200,25 @@ def scrabble():
                 modified_result = double_word(modified_result)
             if request.form.get("trb-wrd"):
                 modified_result = triple_word(modified_result)
-            print(result)
-            print(modified_result)
         except:
             result = "Invalid Word"
             modified_result = "Invalid Word"
-            print(result)
-            print(modified_result)
-        return render_template("scrabble.html", word=result, score=modified_result)
+        if session.get("user_id") is not None:
+            db_result = 0
+            db_mod_result = 0
+            if result != "Invalid Word":
+                db_result = result
+                db_mod_result = modified_result
+            db.execute(
+                "INSERT INTO scrabble (user_id, word, base_score, mod_score) VALUES (?,?,?,?)", session.get("user_id"), request.form.get("word").lower(), db_result, db_mod_result
+            )
+        return render_template("scrabble.html", word=word, result=result, score=modified_result, history=history)
     else:
-        return render_template("scrabble.html")
+        return render_template("scrabble.html", history=history)
+
+@app.route("/games/poker")
+def poker():
+    return render_template("poker.html")
 
 @app.route("/tools")
 def tools():
