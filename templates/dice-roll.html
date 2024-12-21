@@ -6,7 +6,7 @@
 
 {% block main %}
     <div class="main_page_content">
-        <h1>Dice rolls</h1>
+        <h1 class="display-5">Dice rolls</h1>
         <div style="display:flex; justify-content: flex-end;">
             <button id="action_buttons" class="btn btn-outline-primary" type="button" onClick="window.location.reload();">Re-Roll</button>
             <form method="get", action="/tools/dice">
@@ -69,58 +69,95 @@
             </div>
             {% endif %}
             <div class="grand_row">
-                <p>Grand Total: {{ D4_t + D6_t + D8_t + D10_t + D12_t + D20_t }}</p>
+                <p style="font-weight: bold;">Grand Total: {{ D4_t + D6_t + D8_t + D10_t + D12_t + D20_t }}</p>
             </div>
         </div>
         <div>
-            <h2>Previous Rolls:</h2>
+            <h2 class="display-6">Previous Rolls:</h2>
             <div>
                 {% if history == None  %}    
                     <p> To view dice roll history, <a href="/register">create an account</a> or <a href="/login">log in</a></p>
                 {% elif history | length == 0 %}
                     <p> To view dice roll history, roll some dice!</p>
                 {% else %}
-                    <table class="table">
+                    <table class="table table-striped">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>D4</th>
+                                <th>D6</th>
+                                <th>D8</th>
+                                <th>D10</th>
+                                <th>D12</th>
+                                <th>D20</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         {% for i in range(5) %}
                             <tr>    
                                 {% if history[i]["D4"] > 0 %}
                                     <td>
-                                        D4 total: {{ history[i]["D4"] }}                        
+                                    {{ history[i]["D4"] }}                        
+                                    </td>
+                                {% else %}
+                                    <td>
+                                        -
                                     </td>
                                 {% endif %}
                                 {% if history[i]["D6"] > 0 %}
                                     <td>
-                                        D6 total: {{ history[i]["D6"] }}                        
+                                    {{ history[i]["D6"] }}                        
+                                    </td>
+                                {% else %}
+                                    <td>
+                                        -
                                     </td>
                                 {% endif %}
                                 {% if history[i]["D8"] > 0 %}
                                     <td>
-                                        D8 total: {{ history[i]["D8"] }}                        
+                                    {{ history[i]["D8"] }}                        
+                                    </td>
+                                {% else %}
+                                    <td>
+                                        -
                                     </td>
                                 {% endif %}
                                 {% if history[i]["D10"] > 0 %}
                                     <td>
-                                        D10 total: {{ history[i]["D10"] }}                        
+                                        {{ history[i]["D10"] }}                        
+                                    </td>
+                                {% else %}
+                                    <td>
+                                        -
                                     </td>
                                 {% endif %}
                                 {% if history[i]["D12"] > 0 %}
                                     <td>
-                                        D12 total: {{ history[i]["D12"] }}                        
+                                        {{ history[i]["D12"] }}                        
+                                    </td>
+                                {% else %}
+                                    <td>
+                                        -
                                     </td>
                                 {% endif %}
                                 {% if history[i]["D20"] > 0 %}
                                     <td>
-                                        D20 total: {{ history[i]["D20"] }}                        
+                                        {{ history[i]["D20"] }}                        
+                                    </td>
+                                {% else %}
+                                    <td>
+                                        -
                                     </td>
                                 {% endif %}
                                 <td>
-                                    Grand Total: {{ history[i]["D4"] + history[i]["D6"] + history[i]["D8"] + history[i]["D10"] + history[i]["D12"] + history[i]["D20"] }}
+                                    <span style="font-weight: bold">{{ history[i]["D4"] + history[i]["D6"] + history[i]["D8"] + history[i]["D10"] + history[i]["D12"] + history[i]["D20"] }}</span>
                                 </td>
                             </tr>
                         {% endfor %}
+                        </tbody>
                     </table>
                 {% endif %}
-            <div>
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -5,24 +5,34 @@
 {% endblock %}
 
 {% block main %}
-<h1>Set up your players for Monopoly</h1>
-<form method="post", action="/games/monopoly">
-    <p>Number of players:</p>
-    <input id="player_count" min="0" name="players_count" type="number">
-    <button id="player_count_button" type="button">Select</button>
-    <div id="hidden_form">
 
+<div class="centred-input">
+    <h1 class="display-5">Set up Monopoly</h1>
+    <form method="post", action="/games/monopoly">
+    <div class="inputs">
+        <p>Number of players:</p>
+        <input id="player_count" min="0" name="players_count" type="number">
     </div>
+    <div class="centred-button">
+        <button id="player_count_button" class="btn btn-primary" type="button">Select</button>
+    </div>
+    <div id="hidden_form">
+    </div>
+</div>
 </form>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelector("#player_count_button").addEventListener('click', function() {
             let x = document.querySelector("#player_count").value
+            if (x < 1) {
+                alert("Minimum 1 player required")
+                return
+            }
             let text = ""
             for (let i = 0; i < x; i++) {
-                text += "<div class='player_cards'><h3>Player " + (i + 1) + ":</h3> <p>Name: </p> <input name='player_name' placeholder='Name' type='text'></div>"
+                text += "<div><hr><h3 class='display-6'>Player " + (i + 1) + "</h3> <div class='inputs'><label for='player_name'>Name: </label> <input name='player_name' placeholder='Name' type='text' required></div></div>"
             }
-            text += "<div><button>Start</button></div>"
+            text += "<div class='centred-button'><button class='btn btn-primary'>Start</button></div>"
             document.querySelector('#hidden_form').innerHTML = text;
         })
     })

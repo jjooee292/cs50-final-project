@@ -6,19 +6,24 @@
 
 {% block main %}
     
-    <div class='player_cards'>
+    <div class="cards-container">
         {% for i in players %}
-            <h3>{{ i['name'] }}</h3>
-            <p>Score:</p>
-            <p id="score">{{ i['score'] }}</p>
-            <button id="minus">- {{ increment }}</button>
-            <button id="plus">+ {{ increment }}</button>
+        <div class="player-card">
+            <h3 class="display-5">{{ i['name'] }}</h3>
+            <div class="score-inputs"> 
+                <p id="score">{{ i['score'] }}</p>  
+            </div>
+            <div class="pair-buttons">
+                <button class="btn btn-primary" id="minus">- {{ increment }}</button>
+                <button class="btn btn-primary" id="plus">+ {{ increment }}</button>
+            </div>
+        </div>
         {% endfor %}
     </div>
-    <div>
+    <div style="display: flex; justify-content: flex-end; padding: 50px;">
         <!--To Do: implement score saving to database?-->
         <form action="/tools/keep-scores" method="get">
-            <button>Start Over</button>
+            <button class="btn btn-danger">Start Over</button>
         </form>
     </div>
     <script>

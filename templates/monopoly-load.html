@@ -5,9 +5,10 @@
 {% endblock %}
 
 {% block main %}
-<div>
+<div style="display: flex; flex-direction: column;">
     {% for i in saves %}
-         <div>
+        <div style="display: flex; flex-direction: row;">
+            <div>
                 <h3>{{ i["player_name"] }}</h3>
                 <p>£{{ i["cash"] }}</p>
                 <p>
@@ -18,16 +19,21 @@
                 <p>Houses: {{ i["houses"] }}</p>
                 <p>Hotels: {{ i["hotels"] }}</p>
                 <p>{{ i["date_time"] }}</p>
-                <form method="post", action="/games/monopoly/load" name="load">
-                    <input name="load_file" style="display:None;" value="{{ i["session_id"] }}">
-                    {% if loop.nextitem %}
-                        {% if loop.nextitem["session_id"] != i["session_id"] %}
-                            <button type="submit">Load</button>
-                        {% endif %}
-                    {% else %}
-                        <button type="submit">Load</button>
+            </div>
+            <form method="post", action="/games/monopoly/load" name="load">
+                <input name="load_file" style="display:None;" value="{{ i["session_id"] }}">
+                {% if loop.nextitem %}
+                    {% if loop.nextitem["session_id"] != i["session_id"] %}
+                    <div> 
+                        <button class="btn btn-success" type="submit">Load</button>
+                    </div>  
                     {% endif %}
-                </form>
+                {% else %}
+                    <div>
+                        <button class="btn btn-success" type="submit">Load</button>
+                    </div>
+                {% endif %}
+            </form>
         </div>
     {% endfor %}
 </div>

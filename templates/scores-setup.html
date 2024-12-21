@@ -5,28 +5,38 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Set up your players</h1>
+<div class="centred-input">
+    <h1 class="display-5">Set up your players</h1>
     <form method="post", action="/tools/keep-scores">
-        <p>Number of players:</p>
-        <input id="player_count" min="0" name="players_count" type="number">
-        <button id="player_count_button" type="button">Select</button>
+        <div class="inputs">
+            <label for="players_count">Number of players: </label>
+            <input id="player_count" min="1" name="players_count" type="number">
+        </div>
+        <div class="centred-button">
+            <button id="player_count_button" type="button" class="btn btn-primary">Select</button>
+        </div>
         <div id="hidden_form">
 
         </div>
     </form>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelector("#player_count_button").addEventListener('click', function() {
-                let x = document.querySelector("#player_count").value
-                let text = ""
-                for (let i = 0; i < x; i++) {
-                    text += "<div class='player_cards'><h3>Player " + (i + 1) + ":</h3> <p>Name: </p> <input name='player_name' placeholder='Name' type='text'> <p>Starting Score:</p> <input type='number' name='starting_score' value='0'><div>"
-                }
-                text += "<div><p>Score Increment:</p> <input type='number' min='0' name='increment' placeholder='+/-1, +10, +100, etc...'></div><div><button>Start</button></div>"
-                document.querySelector('#hidden_form').innerHTML = text;
-            })
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector("#player_count_button").addEventListener('click', function() {
+            let x = document.querySelector("#player_count").value
+            if (x < 1) {
+                alert("Minimum 1 player required")
+                return
+            }
+            let text = ""
+            for (let i = 0; i < x; i++) {
+                text += "<div><hr><h3 class='display-6'>Player " + (i + 1) + "</h3> <div class='inputs'><label for='player_name'>Name: </label><input name='player_name' placeholder='Name' type='text' required></div><div class='inputs'><label for='starting_score'>Starting Score: </label> <input type='number' name='starting_score' value='0'></div><div>"
+            }
+            text += "<div><hr><div class='inputs'><label for='increment'>Score Increment: </label> <input type='number' min='0' name='increment' placeholder='+/-1, +10, +100, etc...' required min='1'></div></div><div class='centred-button'><button class='btn btn-primary'>Start</button></div>"
+            document.querySelector('#hidden_form').innerHTML = text;
         })
-    </script>
+    })
+</script>
 {% endblock %}
 
 {% block footer %}
