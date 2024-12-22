@@ -5,35 +5,38 @@
 {% endblock %}
 
 {% block main %}
-<h1>Scrabble Scores</h1>
-<div>   
-    <h2>Input a word</h2>
-    <form method="post", action="/games/scrabble">
-        <label for="word">Input Word: </label>
-        <input type="text" name="word" required>
-</div>
-<div>
-        <label for="dbl-wrd">Double Word</label>
-        <input type="checkbox" name="dbl-wrd"><br>
-        <label for="trb-wrd">Triple Word</label>
-        <input type="checkbox" name="trb-wrd"><br>
-        <label for="dbl-ltr">Double Letters: </label>
-        <input type="text" name="dbl-ltr"><br>
-        <label for="trb-ltr">Triple Letters: </label>
-        <input type="text" name="trb-ltr"><br>
-        <label for="blank">Blank Tiles: </label>
-        <input type="text" name="blank"><br>
-        <button>Submit</button>
-    </form>
-</div>
-<div>
-    <h2>Results</h2>
-    <p>Word: <strong>{{ word }}</strong></p>
-    <p>Base Scrabble score: <strong>{{ result }}</strong></p>
-    <p>Total modified score: <strong>{{ score }}</strong></p>
+<h1 class="display-5">Scrabble Scores</h1>
+<div style="display:flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap-reverse;">
+    <div class="centred-input">
+        <div class="centred-input">   
+            <h2 class="display-6">Input a word</h2>
+            <form method="post", action="/games/scrabble">
+                <input type="text" name="word" required>
+        </div>
+        <div>
+                <label for="dbl-wrd">Double Word</label>
+                <input type="checkbox" name="dbl-wrd"><br>
+                <label for="trb-wrd">Triple Word</label>
+                <input type="checkbox" name="trb-wrd"><br>
+                <label for="dbl-ltr">Double Letters: </label>
+                <input type="text" name="dbl-ltr"><br>
+                <label for="trb-ltr">Triple Letters: </label>
+                <input type="text" name="trb-ltr"><br>
+                <label for="blank">Blank Tiles: </label>
+                <input type="text" name="blank"><br>
+                <button class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="centred-input">
+        <h2 class="display-6">Results</h2>
+        <p>Word: <strong>{{ word }}</strong></p>
+        <p>Base Scrabble score: <strong>{{ result }}</strong></p>
+        <p>Total modified score: <strong>{{ score }}</strong></p>
+    </div>
 </div>
 
-<h2>Previous Scores:</h2>
+<h2 class="display-6">Previous Scores:</h2>
 <div>
     {% if history == None  %}    
         <p> To view Scrabble score history, <a href="/register">create an account</a> or <a href="/login">log in</a></p>

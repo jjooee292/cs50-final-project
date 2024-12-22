@@ -16,16 +16,24 @@
     </div>
     {% endif %}
     <div class="main_page_content">
-        <h1>Log in</h1>
+        <div class="centred-input" id="login-form">
+        <h1 class="display-5">Log in</h1>
         <form method="post", action="/login">
-            <input type="text" name="username" placeholder="Username" autocomplete="off">
-            <input type="password" name="password" placeholder="Password" autocomplete="off">
-            <button>Log In</button>
+            <div class="inputs" style="width: 100%">
+                <input type="text" name="username" placeholder="Username" autocomplete="off" style="width:100%;">
+            </div>
+            <div class="inputs">
+                <input type="password" name="password" placeholder="Password" autocomplete="off" style="width:100%;">
+            </div>
+            <div class="centred-button">
+                <button class="btn btn-primary">Log In</button>
+            </div>
+        </div>
         </form>
     </div>
     <p>Don't have an account? <a href="/register">Register here</a></p>
 {% endblock %}
 
 {% block footer %}
-    <p>Sign up or log in to start tracking scores</p>
+    
 {% endblock %}

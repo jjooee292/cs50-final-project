@@ -4,37 +4,33 @@
     Monopoly
 {% endblock %}
 
-{% block main %}
-<div style="display: flex; flex-direction: column;">
+{% block main %}  
+    <hr>    
     {% for i in saves %}
-        <div style="display: flex; flex-direction: row;">
-            <div>
-                <h3>{{ i["player_name"] }}</h3>
-                <p>£{{ i["cash"] }}</p>
-                <p>
-                {% for i in i["cards"] %}
-                    {{ i }}
-                {% endfor %}
-                </p>
-                <p>Houses: {{ i["houses"] }}</p>
-                <p>Hotels: {{ i["hotels"] }}</p>
-                <p>{{ i["date_time"] }}</p>
-            </div>
-            <form method="post", action="/games/monopoly/load" name="load">
-                <input name="load_file" style="display:None;" value="{{ i["session_id"] }}">
-                {% if loop.nextitem %}
-                    {% if loop.nextitem["session_id"] != i["session_id"] %}
-                    <div> 
-                        <button class="btn btn-success" type="submit">Load</button>
-                    </div>  
-                    {% endif %}
-                {% else %}
-                    <div>
-                        <button class="btn btn-success" type="submit">Load</button>
-                    </div>
-                {% endif %}
-            </form>
+        <div class="monopoly-load">
+            <h3 class="display-6">{{ i["player_name"] }}</h3>
+            <p>£{{ i["cash"] }}</p>
+            <p>Properties: {{ i["cards"] | length }}</p>
+            <p>Houses: {{ i["houses"] }}</p>
+            <p>Hotels: {{ i["hotels"] }}</p>
+            <p>{{ i["date_time"] }}</p>
         </div>
+        <form method="post", action="/games/monopoly/load" name="load">
+            <input name="load_file" style="display:None;" value="{{ i["session_id"] }}">
+            {% if loop.nextitem %}
+                {% if loop.nextitem["session_id"] != i["session_id"] %}
+                <div style="display:flex; justify-content:flex-end;"> 
+                    <button class="btn btn-success" type="submit">Load</button>
+                </div>
+                <hr>
+                {% endif %}
+            {% else %}
+                <div style="display:flex; justify-content:flex-end;">
+                    <button class="btn btn-success" type="submit">Load</button>
+                </div>
+                <hr>
+            {% endif %}
+        </form>
     {% endfor %}
 </div>
 {% endblock %}

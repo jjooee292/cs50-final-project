@@ -133,15 +133,14 @@ def monopoly_load():
         )
         for i in players:
             i["cards"] = json.loads(i["cards"])
-        print(players)
         return render_template("monopoly.html", players = players)
-        ## TO DO: handle the ticking of property boxes owned by player upon load with some javascript or jinja code 
     else:
         saves = db.execute (
             "SELECT * FROM monopoly WHERE user_id = ? ORDER BY session_id DESC", session.get("user_id")
         )
         for i in saves:
             i["cards"] = json.loads(i["cards"])
+        print(saves)
         return render_template("monopoly-load.html", saves=saves)
 
 @app.route("/games/monopoly/save", methods=["POST"])

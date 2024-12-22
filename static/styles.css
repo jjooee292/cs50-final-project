@@ -244,3 +244,23 @@ table {
   font-weight: bold;
   font-size: 2em;
 }
+
+#login-form {
+  width : 40%;
+}
+
+@media only screen and (max-width: 700px) {
+  #login-form {
+    width : 90%;
+  }
+}
+
+.monopoly-load {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.monopoly-load > p {
+  padding-top: 17px;
+}
