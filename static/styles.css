@@ -5,6 +5,12 @@ License. */
   src: URL('GamingDiceStandard.ttf') format('truetype');
 }
 
+@font-face {
+  /* https://www.creativefabrica.com/product/technology-family/ref/162831/ */
+  font-family: 'Timer';
+  src: URL('technology.bold.ttf') format('truetype');
+}
+
 #page-container {
     position: relative;
     min-height: 100vh;
@@ -103,8 +109,8 @@ td {
   display: flex;
 }
 
-#poker-hands-list > * {
-  width: 500px;
+#poker-hands > * {
+  width:200px
 }
 
 .card-wrapper {
@@ -156,6 +162,7 @@ td {
   justify-self: center;
   border: 1px solid grey ;
   border-radius: 25px;
+  min-width:250px;
 }
 
 .inputs {
@@ -263,4 +270,79 @@ table {
 
 .monopoly-load > p {
   padding-top: 17px;
+}
+
+.poker-hand {
+  text-align: center; 
+  width:400px; 
+  padding:10px;
+  border: solid 1px black;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+ol {
+  list-style: decimal inside;
+}
+
+.timer-block {
+  margin: 10% 30px 10% 40px;    
+  display: flex; 
+  justify-content:space-around; 
+  align-items: baseline;
+}
+
+@media only screen and (max-width: 500px) {
+  .timer-block {
+    margin: 10% 30px 10% 40px; 
+    display: flex; 
+    justify-content:space-around; 
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.timer-colon {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#timer_h, #timer_m, #timer_s, .timer-colon-display {
+  font-family: timer;
+  font-weight: bolder;
+  font-size: 3.5em;
+}
+
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+  justify-self: center;
+  border: 1px solid grey ;
+  border-radius: 25px;
+  width: 50%;
+}
+
+@media only screen and (max-width: 700px) {
+  .timer-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+    justify-self: center;
+    border: 1px solid grey ;
+    border-radius: 25px;
+    width: 100%;
+  }
+}
+
+.account-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  margin: 20px;
+  border: 1px solid black ;
+  border-radius: 25px;
 }

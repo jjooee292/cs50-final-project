@@ -5,26 +5,29 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Timer</h1>
-    
-        <form action="/tools/timer" method="post">
-            <div style="padding-left: 30%; padding-right: 30%; display: flex; justify-content:space-around;">
-                <input type="number" min="0" max="24" name="hours" value="00">
-                <p>:</p>
-                <input type="number" min="0" max="59" name="mins" value="00">
-                <p>:</p>
-                <input type="number" min="0" max="59" name="secs" value="00">
-            </div>
-            <select name="timer-chime">
+<div class="player-card" style="width: 50%">
+    <h1 class="display-5">Timer</h1>
+    <form action="/tools/timer" method="post">
+        <div class="timer-block">
+            <input type="number" min="0" max="23" value="00" name="hours" placeholder="H" style="min-width:40px; text-align: center;">
+            <p class="timer-colon">:</p>
+            <input type="number" min="0" max="59" value="00" name="mins" placeholder="M" style="min-width:40px; text-align: center;">
+            <p class="timer-colon">:</p>
+            <input type="number" min="0" max="59" value="00" name="secs" placeholder="S" style="min-width:40px; text-align: center;">
+        </div>
+        <div class="inputs" style="justify-content: center; flex-direction: column;">
+            <!--All timer sounds sourced from https://sound-effects.bbcrewind.co.uk/-->
+            <select name="timer-chime" style="width:200px; align-self: center;">
                 <option value="alarm" selected>Alarm (default)</option>
                 <option value="chime" >Chime</option>
                 <option value="buzzer" >Buzzer</option>
                 <option value="medieval" >Medieval</option>
                 <option value="cosmic" >Cosmic</option>
             </select>
-            <button>Go</button>
-        </form>
-    
+            <button class="btn btn-primary" style="margin-top: 20px; width:100px; align-self: center;">Go</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
 
 {% block footer %}

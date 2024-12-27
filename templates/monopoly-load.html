@@ -6,6 +6,12 @@
 
 {% block main %}  
     <hr>    
+    {% if not saves %}
+        <h3 class="display-6">No saved games</h3>
+        <p>To start a new game, <a href="/login">login</a> or <a href="/register">register</a>, then go to <a href="/games/monopoly">Monopoly</a>.</p>
+    {% else %}
+    <h2 class="display-5">Saved Monopoly Games: </h2>
+    <hr>
     {% for i in saves %}
         <div class="monopoly-load">
             <h3 class="display-6">{{ i["player_name"] }}</h3>
@@ -32,6 +38,7 @@
             {% endif %}
         </form>
     {% endfor %}
+    {% endif %}
 </div>
 {% endblock %}
 

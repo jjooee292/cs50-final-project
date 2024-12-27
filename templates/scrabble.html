@@ -8,31 +8,51 @@
 <h1 class="display-5">Scrabble Scores</h1>
 <div style="display:flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap-reverse;">
     <div class="centred-input">
-        <div class="centred-input">   
+        <div style="display:flex; flex-direction: column; justify-content: center; align-items: center;">   
             <h2 class="display-6">Input a word</h2>
             <form method="post", action="/games/scrabble">
-                <input type="text" name="word" required>
+                <input class="centred-input" style="border-radius: 10px; height: 30px; width:100%; text-align: center;" type="text" name="word" required>
         </div>
         <div>
-                <label for="dbl-wrd">Double Word</label>
-                <input type="checkbox" name="dbl-wrd"><br>
+            <div style="display:flex; flex-direction: row; justify-content: space-between; padding-bottom: 5px;">
+                <label for="dbl-wrd" style="text-align: right;">Double Word</label>
+                <input type="checkbox" name="dbl-wrd">
+            </div>
+            <div style="display:flex; flex-direction: row; justify-content: space-between; padding-bottom: 5px;">
                 <label for="trb-wrd">Triple Word</label>
-                <input type="checkbox" name="trb-wrd"><br>
+                <input type="checkbox" name="trb-wrd">
+            </div>
+            <div style="display:flex; flex-direction: row; justify-content: space-between; padding-bottom: 5px;">
                 <label for="dbl-ltr">Double Letters: </label>
-                <input type="text" name="dbl-ltr"><br>
+                <input type="text" name="dbl-ltr" placeholder="Enter each letter" style="width: 55%">
+            </div>
+            <div style="display:flex; flex-direction: row; justify-content: space-between; padding-bottom: 5px;">
                 <label for="trb-ltr">Triple Letters: </label>
-                <input type="text" name="trb-ltr"><br>
+                <input type="text" name="trb-ltr" placeholder="Enter each letter" style="width: 55%">
+            </div>
+            <div style="display:flex; flex-direction: row; justify-content: space-between; padding-bottom: 5px;">
                 <label for="blank">Blank Tiles: </label>
-                <input type="text" name="blank"><br>
-                <button class="btn btn-primary">Submit</button>
-            </form>
+                <input type="text" name="blank" placeholder="Enter each letter" style="width: 55%">
+            </div>
         </div>
+        <div class="centred-button">
+            <button class="btn btn-primary">Submit</button>
+        </div>
+        </form>
+        
     </div>
-    <div class="centred-input">
+    <div class="centred-input" style="min-width: 300px; display:flex; flex-direction: column; align-items: center;">
         <h2 class="display-6">Results</h2>
-        <p>Word: <strong>{{ word }}</strong></p>
-        <p>Base Scrabble score: <strong>{{ result }}</strong></p>
-        <p>Total modified score: <strong>{{ score }}</strong></p>
+        {% if not word %}
+            <p style="padding-top:6px">Enter a word to begin...</p>
+        {% else %}
+            <p style="padding-top:6px">Word</p>
+            <p id="score" style="font-size: x-large;"><strong>{{ word | capitalize }}</strong></p>
+            <p style="padding-top:6px">Base Scrabble score</p>
+            <p id="score" style="font-size: x-large;"><strong>{{ result }}</strong></p>
+            <p style="padding-top:6px">Total modified score</p>
+            <p id="score" style="font-size: x-large;"><strong>{{ score }}</strong></p>
+        {% endif %}
     </div>
 </div>
 
@@ -43,11 +63,11 @@
     {% elif history | length == 0 %}
         <p> To view Scrabble score history, submit some words!</p>
     {% else %}
-        <table>
+        <table class="table table-striped">
             {% for i in range(history | length) %}
                 <tr>    
                     <td>
-                        <strong>{{ history[i]["word"] }}  </strong>                      
+                        <strong>{{ history[i]["word"] | capitalize }}  </strong>                      
                     </td>
                     <td>
                         {% if history[i]["base_score"] != 0 %}
@@ -59,6 +79,8 @@
                     <td>
                         {% if history[i]["base_score"] != 0 %}
                             Modified: {{ history[i]["mod_score"] }} 
+                        {% else %}
+                            <i>Invalid</i>
                         {% endif %}                          
                     </td>
                 </tr>

@@ -15,17 +15,28 @@
         </header>
     </div>
     {% endif %}
-    <div class="main_page_content">
-        <h1>Register for an account</h1>
+    <div class="centred-input" id="login-form">
+        <h1 class="display-5">Register for a new account</h1>
         <form method="post", action="/register">
-            <input type="text" name="username" placeholder="Username" autocomplete="off">
-            <input type="password" name="password" placeholder="Password" autocomplete="off" minlength="8">
-            <button>Register</button>
+            <div class="inputs" style="flex-direction: column; align-items: center;">
+                <input type="text" name="username" placeholder="Username" autocomplete="off" style="text-align: center; margin: 10px">
+                <input type="password" name="password" placeholder="Password" autocomplete="off" minlength="8" style="text-align: center; margin: 10px">
+            </div>
+            <div class="centred-button">
+                <button class="btn btn-primary">Register</button>
+            </div>
         </form>
-        <p>Passwords must be at least 8 digits long, and contain one capital letter and one special character.</p>
+    </div>
+    <div>
+        <p style="margin-top: 30px;">Passwords must:</p>
+        <ul>
+            <li>Be at least 8 characters long</li>
+            <li>Contain at least one capital letter</li>
+            <li>Contain at least one special character</li>
+        </ul>
     </div>
 {% endblock %}
 
 {% block footer %}
-    <p>Sign up or log in to start tracking scores</p>
+    <p>Already have an account? <a href="/login">Login</a> instead.</p>
 {% endblock %}

@@ -5,74 +5,86 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Timer</h1>
-    <div id="timer-display" style="padding-left: 45%; padding-right: 45%; display: flex; justify-content:space-around;">
-       <p id="timer_h">{{ hours }}</p><p>:</p><p id="timer_m">{{ mins }}</p><p>:</p><p id="timer_s">{{ secs }}</p> 
+<div class="timer-container">  
+    <h1 class="display-5">Timer</h1>
+    <div id="timer-display" style="display: flex; justify-content:space-evenly; padding:20px">
+       <p id="timer_h" style="width:50.07px">{{ hours }}</p><p class="timer-colon-display">:</p><p id="timer_m" style="width:50.07px">{{ mins }}</p><p class="timer-colon-display">:</p><p id="timer_s" style="width:50.07px">{{ secs }}</p> 
     </div>
-    <button type="button" id="start" onclick="start()">Start</button>
-    <button type="button" id="pause">Pause</button>
     <form action="/tools/timer" method="get">
-        <button id="reset">Reset</button>
+    <div style="display: flex; justify-content: center; flex-direction: column;">
+        <div style="display: flex; justify-content: center; flex-direction: row;">
+            <button class="btn btn-primary" style="margin: 20px; width:100px;" type="button" id="start" onclick="window.start()">Start</button>
+            <button class="btn btn-danger" style="margin: 20px; width:100px;" type="button" id="pause">Pause</button>
+        </div>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <button class="btn btn-warning" style="margin-top: 20px; width:100px;" id="reset">Reset</button>
+    </div>
     </form>
-    <audio id="audio">
-        <source src="/static/{{ audio }}.mp3">
-    </audio>
-    <script>
-        function start() {   
-            document.getElementById("start").disabled = true;
-            second_timer = setInterval(function() {
-                let timer_s = document.getElementById("timer_s").innerHTML
-                let timer_m = document.getElementById("timer_m").innerHTML
-                let timer_h = document.getElementById("timer_h").innerHTML
-                let new_time_s = 0
-                let new_time_m = 0
-                let new_time_h = 0
-                if (timer_s <= 11 && timer_m == 0 && timer_h == 0) {
-                    document.getElementById("timer-display").style.color = "red"
-                }
-                if (timer_s == 0 && timer_m == 0 && timer_h == 0) {
-                    document.getElementById("audio").play()
-                    clearInterval(second_timer)
-                    return;
-                }
-                else {
-                    if (timer_s == 0) {
-                        new_time_s = "59"
-                        if (timer_m == 0) {
-                            new_time_m = "59"
-                            if (timer_h > 0) {
-                                new_time_h = timer_h - 1
-                                if (new_time_h < 10) {
-                                    new_time_h = "0" + new_time_h
-                                }
-                                document.getElementById("timer_h").innerHTML = new_time_h
+</div>  
+
+<audio id="audio">
+<source src="/static/{{ audio }}.mp3">
+</audio>
+
+<script>
+    window.start = function() {
+        console.log("Timer start")
+        document.getElementById("start").disabled = true;
+        second_timer = setInterval(function() {
+            let timer_s = document.getElementById("timer_s").innerHTML
+            let timer_m = document.getElementById("timer_m").innerHTML
+            let timer_h = document.getElementById("timer_h").innerHTML
+            let new_time_s = 0
+            let new_time_m = 0
+            let new_time_h = 0
+            if (timer_s <= 11 && timer_m == 0 && timer_h == 0) {
+                document.getElementById("timer-display").style.color = "red"
+            }
+            if (timer_s == 0 && timer_m == 0 && timer_h == 0) {
+                document.getElementById("audio").play()
+                clearInterval(second_timer)
+                return;
+            }
+            else {
+                if (timer_s == 0) {
+                    new_time_s = "59"
+                    if (timer_m == 0) {
+                        new_time_m = "59"
+                        if (timer_h > 0) {
+                            new_time_h = timer_h - 1
+                            if (new_time_h < 10) {
+                                new_time_h = "0" + new_time_h
                             }
+                            document.getElementById("timer_h").innerHTML = new_time_h
                         }
-                        else {
-                            new_time_m = timer_m - 1
-                            if (new_time_m < 10) {
-                                new_time_m = "0" + new_time_m
-                            }
-                        }
-                        document.getElementById("timer_m").innerHTML = new_time_m
                     }
                     else {
-                        new_time_s = timer_s - 1
-                        if (new_time_s < 10) {
-                            new_time_s = "0" + new_time_s
+                        new_time_m = timer_m - 1
+                        if (new_time_m < 10) {
+                            new_time_m = "0" + new_time_m
                         }
                     }
-                    document.getElementById("timer_s").innerHTML = new_time_s
+                    document.getElementById("timer_m").innerHTML = new_time_m
                 }
-            }, 1000)
-            document.getElementById("pause").addEventListener('click', function() {
-                clearInterval(second_timer)
-                document.getElementById("audio").pause()
-                document.getElementById("timer-display").style.color = "black"
-                document.getElementById("start").disabled = false;
-            })
-        }
-    </script>
+                else {
+                    new_time_s = timer_s - 1
+                    if (new_time_s < 10) {
+                        new_time_s = "0" + new_time_s
+                    }
+                }
+                document.getElementById("timer_s").innerHTML = new_time_s
+            }
+        }, 1000)
+        document.getElementById("pause").addEventListener('click', function() {
+            console.log("Timer pause")
+            clearInterval(second_timer)
+            document.getElementById("audio").pause()
+            document.getElementById("timer-display").style.color = "black"
+            document.getElementById("start").disabled = false;
+        })
+    }
+</script>
 {% endblock %}
 
 {% block footer %}

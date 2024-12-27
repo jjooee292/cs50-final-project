@@ -91,7 +91,8 @@ def login():
             return redirect("/login")
         session["user_id"] = rows[0]["id"]
         session["username"] = rows[0]["username"]
-        flash(session["username"])
+        user = session["username"]
+        flash(f"Login successful, welcome {user}!")
         return redirect("/")
     else:
         return render_template("login.html")
@@ -99,15 +100,24 @@ def login():
 
 @app.route("/logout")
 def logout():
-    # Forget user_id & Redirect to homepage
     session.clear()
+    flash("Logged out successfully")
     return redirect("/")
 
 
 @app.route("/account")
 @login_required
 def account():
-    return render_template("account.html", username = session["username"])
+    monopoly = db.execute (
+            "SELECT count(*) FROM monopoly_sessions WHERE user_id = ?", session.get("user_id")
+        )
+    dice = db.execute(
+            "SELECT * FROM dice_history WHERE user_id = ? ORDER BY id DESC", session.get("user_id")
+        )
+    scrabble = db.execute(
+            "SELECT * FROM scrabble WHERE user_id = ? ORDER BY id DESC", session.get("user_id")
+        )
+    return render_template("account.html", username = session["username"], monopoly = monopoly, dice = dice, scrabble = scrabble)
 
 @app.route("/games")
 def games():

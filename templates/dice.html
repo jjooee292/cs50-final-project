@@ -59,7 +59,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        {% for i in range(5) %}
+                        {% for i in range(history | length) %}
                             <tr>    
                                 {% if history[i]["D4"] > 0 %}
                                     <td>

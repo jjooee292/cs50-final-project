@@ -5,114 +5,138 @@
 {% endblock %}
 
 {% block main %}
-    <H1>Hello, {{ username }}!</H1>
-    <a href="/logout">Log out</a>
-    <h2>Top Games</h2>
-    <p>some info about top games</p>
-    <p>some more info about top games</p>
-    <p>even more info about top games</p>
-    <h2>High Scores</h2>
-    <table>
-        <tr>
-            <td>
-                Game 1
-            </td>
-            <td>
-                999
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Game 1
-            </td>
-            <td>
-                999
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Game 1
-            </td>
-            <td>
-                999
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Game 1
-            </td>
-            <td>
-                999
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Game 1
-            </td>
-            <td>
-                999
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Game 1
-            </td>
-            <td>
-                999
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Game 1
-            </td>
-            <td>
-                999
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Game 1
-            </td>
-            <td>
-                999
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Game 1
-            </td>
-            <td>
-                999
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Game 1
-            </td>
-            <td>
-                999
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Game 1
-            </td>
-            <td>
-                999
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Game 1
-            </td>
-            <td>
-                999
-            </td>
-        </tr>
+    <div class="account-banner"> 
+        <h1 class="display-5">Hello, {{ username }}!</h1>
+        <form action="/logout" method="get">
+            <button class="btn btn-danger">Log out</button>
+        </form>
+    </div>
+    <h2 class="display-5" style="text-align: left;">Statistics:</h2>
+    <hr>
+    {% if monopoly[0]["count(*)"] > 0 %}
+    <h2 class="display-6" style="text-align: center;">Monopoly Games Saved: {{ monopoly[0]["count(*)"] }}</h2>
+    <p style="text-align: center;">To load a previously saved game, <a href="/games/monopoly/load">click here to view your saves</a></p>
+    <hr>
+    {% else %}
+    <p>To start tracking your Monopoly games, click <a href="/games/monopoly">here</a>.</p>
+    <hr>
+    {% endif %}
+    {% if dice[0] %}
+    <h2 class="display-6" style="text-align: center;">Dice Roll History</h2>
+    <table class="table table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th>D4</th>
+                <th>D6</th>
+                <th>D8</th>
+                <th>D10</th>
+                <th>D12</th>
+                <th>D20</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in range(dice | length) %}
+            <tr>    
+                {% if dice[i]["D4"] > 0 %}
+                    <td>
+                    {{ dice[i]["D4"] }}                        
+                    </td>
+                {% else %}
+                    <td>
+                        -
+                    </td>
+                {% endif %}
+                {% if dice[i]["D6"] > 0 %}
+                    <td>
+                    {{ dice[i]["D6"] }}                        
+                    </td>
+                {% else %}
+                    <td>
+                        -
+                    </td>
+                {% endif %}
+                {% if dice[i]["D8"] > 0 %}
+                    <td>
+                    {{ dice[i]["D8"] }}                        
+                    </td>
+                {% else %}
+                    <td>
+                        -
+                    </td>
+                {% endif %}
+                {% if dice[i]["D10"] > 0 %}
+                    <td>
+                        {{ dice[i]["D10"] }}                        
+                    </td>
+                {% else %}
+                    <td>
+                        -
+                    </td>
+                {% endif %}
+                {% if dice[i]["D12"] > 0 %}
+                    <td>
+                        {{ dice[i]["D12"] }}                        
+                    </td>
+                {% else %}
+                    <td>
+                        -
+                    </td>
+                {% endif %}
+                {% if dice[i]["D20"] > 0 %}
+                    <td>
+                        {{ dice[i]["D20"] }}                        
+                    </td>
+                {% else %}
+                    <td>
+                        -
+                    </td>
+                {% endif %}
+                <td>
+                    <span style="font-weight: bold">{{ dice[i]["D4"] + dice[i]["D6"] + dice[i]["D8"] + dice[i]["D10"] + dice[i]["D12"] + dice[i]["D20"] }}</span>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
     </table>
-    <button>View All</button>
+    <hr>
+    {% else %}
+    <p>To start tracking your dice rolls, click <a href="/tools/dice">here</a>.</p>
+    <hr>
+    {% endif %}
+    {% if scrabble[0] %}
+    <h2 class="display-6" style="text-align: center;">Scrabble History</h2>
+    <table class="table table-striped">
+        {% for i in range(scrabble | length) %}
+            <tr>    
+                <td>
+                    <strong>{{ scrabble[i]["word"] | capitalize }}  </strong>                      
+                </td>
+                <td>
+                    {% if scrabble[i]["base_score"] != 0 %}
+                        Base: {{ scrabble[i]["base_score"] }}
+                    {% else %}
+                        <i>Invalid</i>
+                    {% endif %}                        
+                </td>
+                <td>
+                    {% if scrabble[i]["base_score"] != 0 %}
+                        Modified: {{ scrabble[i]["mod_score"] }} 
+                    {% else %}
+                        <i>Invalid</i>
+                    {% endif %}                          
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <hr>
+    {% else %}
+    <p>To start tracking your Scrabble games, click <a href="/games/scrabble">here</a>.</p>
+    {% endif %}
+
+
 {% endblock %}
 
 {% block footer %}
-    <p>Sign up or log in to start tracking scores</p>
+
 {% endblock %}
