@@ -14,6 +14,9 @@ License. */
 #page-container {
     position: relative;
     min-height: 100vh;
+    background-color: whitesmoke;
+    background-image: linear-gradient(160deg, whitesmoke, silver);
+    background-attachment: fixed;
   }
   
 #content-wrap {
@@ -107,10 +110,6 @@ td {
 .grand_row {
   justify-content: flex-end;
   display: flex;
-}
-
-#poker-hands > * {
-  width:200px
 }
 
 .card-wrapper {
@@ -278,7 +277,7 @@ table {
   padding:10px;
   border: solid 1px black;
   border-radius: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 ol {
@@ -345,4 +344,21 @@ ol {
   margin: 20px;
   border: 1px solid black ;
   border-radius: 25px;
+}
+
+
+.frosted {
+  background-color: rgba(153, 165, 199, 0.3);
+  box-shadow: 4px 8px #999999;
+}
+
+.frosted input {
+  background-color: rgba(243, 240, 255, 0.7);
+  accent-color: rgb(243, 240, 255);
+  border: 1px solid grey ;
+  border-radius: 4px;
+}
+
+.display-5 {
+  margin-top: 15px;
 }

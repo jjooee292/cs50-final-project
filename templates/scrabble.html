@@ -7,7 +7,7 @@
 {% block main %}
 <h1 class="display-5">Scrabble Scores</h1>
 <div style="display:flex; justify-content: space-evenly; flex-direction: row; flex-wrap: wrap-reverse;">
-    <div class="centred-input">
+    <div class="centred-input frosted">
         <div style="display:flex; flex-direction: column; justify-content: center; align-items: center;">   
             <h2 class="display-6">Input a word</h2>
             <form method="post", action="/games/scrabble">
@@ -41,7 +41,7 @@
         </form>
         
     </div>
-    <div class="centred-input" style="min-width: 300px; display:flex; flex-direction: column; align-items: center;">
+    <div class="centred-input frosted" style="min-width: 300px; display:flex; flex-direction: column; align-items: center;">
         <h2 class="display-6">Results</h2>
         {% if not word %}
             <p style="padding-top:6px">Enter a word to begin...</p>

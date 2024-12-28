@@ -6,7 +6,7 @@
 
 {% block main %}
 
-<div class="centred-input">
+<div class="centred-input frosted">
     <h1 class="display-5">Set up Monopoly</h1>
     <form method="post", action="/games/monopoly">
     <div class="inputs">
@@ -37,8 +37,11 @@
         })
     })
 </script>
+<div style="display: flex; justify-content: flex-end;">
+    <p><a id="monopoly_load" href="/games/monopoly/load">Load a previous game</a> instead</p>
+</div>
 {% endblock %}
 
 {% block footer %}
-<p>Monopoly: click here to <a id="monopoly_load" href="/games/monopoly/load">load a previous game</a> instead</p>
+
 {% endblock %}

@@ -9,7 +9,7 @@
     <div>
         <div class="cards-container">
             {% for i in players %}
-            <div class='player-card' style="width: 360px;">
+            <div class='player-card frosted' style="width: 360px;">
                 <h3 class="display-5" id="name">{{ i['player_name'] }}</h3>
                 <hr>
                 <div class="score-inputs"> 
@@ -23,120 +23,120 @@
                 <hr>
                 <p style="text-align: center;">Cards</p>
                 <div class="inputs-monopoly" style="background-color: burlywood;"> 
-                    <input type="checkbox" class="form-check-input" id="p1" name="cards_{{ i['player_name'] }}" value="Old Kent Road" {% if 'Old Kent Road' in i['cards'] %} checked {% endif %}>
-                    <label for="p1">Old Kent Road</label><br>
+                    <input type="checkbox" class="form-check-input" id="p1-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Old Kent Road" {% if 'Old Kent Road' in i['cards'] %} checked {% endif %}>
+                    <label for="p1-{{ i['id'] }}">Old Kent Road</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: burlywood;">
-                    <input type="checkbox" class="form-check-input" id="p2" name="cards_{{ i['player_name'] }}" value="Whitechapel Road" {% if 'Whitechapel Road' in i['cards'] %} checked {% endif %}>
-                    <label for="p2">Whitechapel Road</label><br>
+                    <input type="checkbox" class="form-check-input" id="p2-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Whitechapel Road" {% if 'Whitechapel Road' in i['cards'] %} checked {% endif %}>
+                    <label for="p2-{{ i['id'] }}">Whitechapel Road</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: lightskyblue;">
-                    <input type="checkbox" class="form-check-input" id="p3" name="cards_{{ i['player_name'] }}" value="The Angel Islington" {% if 'The Angel Islington' in i['cards'] %} checked {% endif %}>
-                    <label for="p3">The Angel Islington</label><br>
+                    <input type="checkbox" class="form-check-input" id="p3-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="The Angel Islington" {% if 'The Angel Islington' in i['cards'] %} checked {% endif %}>
+                    <label for="p3-{{ i['id'] }}">The Angel Islington</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: lightskyblue;">
-                    <input type="checkbox" class="form-check-input" id="p4" name="cards_{{ i['player_name'] }}" value="Euston Road" {% if 'Euston Road' in i['cards'] %} checked {% endif %}>
-                    <label for="p4">Euston Road</label><br>
+                    <input type="checkbox" class="form-check-input" id="p4-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Euston Road" {% if 'Euston Road' in i['cards'] %} checked {% endif %}>
+                    <label for="p4-{{ i['id'] }}">Euston Road</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: lightskyblue;">
-                    <input type="checkbox" class="form-check-input" id="p5" name="cards_{{ i['player_name'] }}" value="Pentonville Road" {% if 'Pentonville Road' in i['cards'] %} checked {% endif %}>
-                    <label for="p5">Pentonville Road</label><br>
+                    <input type="checkbox" class="form-check-input" id="p5-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Pentonville Road" {% if 'Pentonville Road' in i['cards'] %} checked {% endif %}>
+                    <label for="p5-{{ i['id'] }}">Pentonville Road</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: magenta;">
-                    <input type="checkbox" class="form-check-input" id="p6" name="cards_{{ i['player_name'] }}" value="Pall Mall" {% if 'Pall Mall' in i['cards'] %} checked {% endif %}>
-                    <label for="p6">Pall Mall</label><br>
+                    <input type="checkbox" class="form-check-input" id="p6-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Pall Mall" {% if 'Pall Mall' in i['cards'] %} checked {% endif %}>
+                    <label for="p6-{{ i['id'] }}">Pall Mall</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: magenta;">
-                    <input type="checkbox" class="form-check-input" id="p7" name="cards_{{ i['player_name'] }}" value="Whitehall" {% if 'Whitehall' in i['cards'] %} checked {% endif %}>
-                    <label for="p7">Whitehall</label><br>
+                    <input type="checkbox" class="form-check-input" id="p7-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Whitehall" {% if 'Whitehall' in i['cards'] %} checked {% endif %}>
+                    <label for="p7-{{ i['id'] }}">Whitehall</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: magenta;">
-                    <input type="checkbox" class="form-check-input" id="p8" name="cards_{{ i['player_name'] }}" value="Northumberland Avenue" {% if 'Northumberland Avenue' in i['cards'] %} checked {% endif %}>
-                    <label for="p8">Northumberland Avenue</label><br>
+                    <input type="checkbox" class="form-check-input" id="p8-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Northumberland Avenue" {% if 'Northumberland Avenue' in i['cards'] %} checked {% endif %}>
+                    <label for="p8-{{ i['id'] }}">Northumberland Avenue</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: orange;">
-                    <input type="checkbox" class="form-check-input" id="p9" name="cards_{{ i['player_name'] }}" value="Bow Street" {% if 'Bow Street' in i['cards'] %} checked {% endif %}>
-                    <label for="p1">Bow Street</label><br>
+                    <input type="checkbox" class="form-check-input" id="p9-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Bow Street" {% if 'Bow Street' in i['cards'] %} checked {% endif %}>
+                    <label for="p9-{{ i['id'] }}">Bow Street</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: orange;">
-                    <input type="checkbox" class="form-check-input" id="p10" name="cards_{{ i['player_name'] }}" value="Great Marlborough Street" {% if 'Great Marlborough Street' in i['cards'] %} checked {% endif %}>
-                    <label for="p10">Great Marlborough Street</label><br>
+                    <input type="checkbox" class="form-check-input" id="p10-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Great Marlborough Street" {% if 'Great Marlborough Street' in i['cards'] %} checked {% endif %}>
+                    <label for="p10-{{ i['id'] }}">Great Marlborough Street</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: orange;">
-                    <input type="checkbox" class="form-check-input" id="p11" name="cards_{{ i['player_name'] }}" value="Vine Street" {% if 'Vine Street' in i['cards'] %} checked {% endif %}>
-                    <label for="p11">Vine Street</label><br>
+                    <input type="checkbox" class="form-check-input" id="p11-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Vine Street" {% if 'Vine Street' in i['cards'] %} checked {% endif %}>
+                    <label for="p11-{{ i['id'] }}">Vine Street</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: #e62626;">
-                    <input type="checkbox" class="form-check-input" id="p12" name="cards_{{ i['player_name'] }}" value="Strand" {% if 'Strand' in i['cards'] %} checked {% endif %}>
-                    <label for="p12">Strand</label><br>
+                    <input type="checkbox" class="form-check-input" id="p12-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Strand" {% if 'Strand' in i['cards'] %} checked {% endif %}>
+                    <label for="p12-{{ i['id'] }}">Strand</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: #e62626;">
-                    <input type="checkbox" class="form-check-input" id="p13" name="cards_{{ i['player_name'] }}" value="Fleet Street" {% if 'Fleet Street' in i['cards'] %} checked {% endif %}>
-                    <label for="p13">Fleet Street</label><br>
+                    <input type="checkbox" class="form-check-input" id="p13-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Fleet Street" {% if 'Fleet Street' in i['cards'] %} checked {% endif %}>
+                    <label for="p13-{{ i['id'] }}">Fleet Street</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: #e62626;">
-                    <input type="checkbox" class="form-check-input" id="p14" name="cards_{{ i['player_name'] }}" value="Trafalgar Square" {% if 'Trafalgar Square' in i['cards'] %} checked {% endif %}>
-                    <label for="p14">Trafalgar Square</label><br>
+                    <input type="checkbox" class="form-check-input" id="p14-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Trafalgar Square" {% if 'Trafalgar Square' in i['cards'] %} checked {% endif %}>
+                    <label for="p14-{{ i['id'] }}">Trafalgar Square</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: yellow;">
-                    <input type="checkbox" class="form-check-input" id="p15" name="cards_{{ i['player_name'] }}" value="Leicester Square" {% if 'Leicester Square' in i['cards'] %} checked {% endif %}>
-                    <label for="p15">Leicester Square</label><br>
+                    <input type="checkbox" class="form-check-input" id="p15-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Leicester Square" {% if 'Leicester Square' in i['cards'] %} checked {% endif %}>
+                    <label for="p15-{{ i['id'] }}">Leicester Square</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: yellow;">
-                    <input type="checkbox" class="form-check-input" id="p16" name="cards_{{ i['player_name'] }}" value="Coventry Street" {% if 'Coventry Street' in i['cards'] %} checked {% endif %}>
-                    <label for="p16">Coventry Street</label><br>
+                    <input type="checkbox" class="form-check-input" id="p16-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Coventry Street" {% if 'Coventry Street' in i['cards'] %} checked {% endif %}>
+                    <label for="p16-{{ i['id'] }}">Coventry Street</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: yellow;">
-                    <input type="checkbox" class="form-check-input" id="p17" name="cards_{{ i['player_name'] }}" value="Piccadilly" {% if 'Piccadilly' in i['cards'] %} checked {% endif %}>
-                    <label for="p17">Piccadilly</label><br>
+                    <input type="checkbox" class="form-check-input" id="p17-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Piccadilly" {% if 'Piccadilly' in i['cards'] %} checked {% endif %}>
+                    <label for="p17-{{ i['id'] }}">Piccadilly</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: #00FF40;">
-                    <input type="checkbox" class="form-check-input" id="p18" name="cards_{{ i['player_name'] }}" value="Regent Street" {% if 'Regent Street' in i['cards'] %} checked {% endif %}>
-                    <label for="p18">Regent Street</label><br>
+                    <input type="checkbox" class="form-check-input" id="p18-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Regent Street" {% if 'Regent Street' in i['cards'] %} checked {% endif %}>
+                    <label for="p18-{{ i['id'] }}">Regent Street</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: #00FF40;">
-                    <input type="checkbox" class="form-check-input" id="p19" name="cards_{{ i['player_name'] }}" value="Oxford Street" {% if 'Oxford Street' in i['cards'] %} checked {% endif %}>
-                    <label for="p19">Oxford Street</label><br>
+                    <input type="checkbox" class="form-check-input" id="p19-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Oxford Street" {% if 'Oxford Street' in i['cards'] %} checked {% endif %}>
+                    <label for="p19-{{ i['id'] }}">Oxford Street</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: #00FF40;">
-                    <input type="checkbox" class="form-check-input" id="p20" name="cards_{{ i['player_name'] }}" value="Bond Street" {% if 'Bond Street' in i['cards'] %} checked {% endif %}>
-                    <label for="p20">Bond Street</label><br>
+                    <input type="checkbox" class="form-check-input" id="p20-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Bond Street" {% if 'Bond Street' in i['cards'] %} checked {% endif %}>
+                    <label for="p20-{{ i['id'] }}">Bond Street</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: #1F75FE;">
-                    <input type="checkbox" class="form-check-input" id="p21" name="cards_{{ i['player_name'] }}" value="Park Lane" {% if 'Park Lane' in i['cards'] %} checked {% endif %}>
-                    <label for="p21">Park Lane</label><br>
+                    <input type="checkbox" class="form-check-input" id="p21-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Park Lane" {% if 'Park Lane' in i['cards'] %} checked {% endif %}>
+                    <label for="p21-{{ i['id'] }}">Park Lane</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: #1F75FE;">
-                    <input type="checkbox" class="form-check-input" id="p22" name="cards_{{ i['player_name'] }}" value="Mayfair" {% if 'Mayfair' in i['cards'] %} checked {% endif %}>
-                    <label for="p22">Mayfair</label><br>
+                    <input type="checkbox" class="form-check-input" id="p22-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Mayfair" {% if 'Mayfair' in i['cards'] %} checked {% endif %}>
+                    <label for="p22-{{ i['id'] }}">Mayfair</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: grey;">
-                    <input type="checkbox" class="form-check-input" id="p23" name="cards_{{ i['player_name'] }}" value="King's Cross Station" {% if 'King\'s Cross Station' in i['cards'] %} checked {% endif %}>
-                    <label for="p23">King's Cross Station</label><br>
+                    <input type="checkbox" class="form-check-input" id="p23-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="King's Cross Station" {% if 'King\'s Cross Station' in i['cards'] %} checked {% endif %}>
+                    <label for="p23-{{ i['id'] }}">King's Cross Station</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: grey;">
-                    <input type="checkbox" class="form-check-input" id="p24" name="cards_{{ i['player_name'] }}" value="Marylebone Station" {% if 'Marylebone Station' in i['cards'] %} checked {% endif %}>
-                    <label for="p24">Marylebone Station</label><br>
+                    <input type="checkbox" class="form-check-input" id="p24-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Marylebone Station" {% if 'Marylebone Station' in i['cards'] %} checked {% endif %}>
+                    <label for="p24-{{ i['id'] }}">Marylebone Station</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: grey;">
-                    <input type="checkbox" class="form-check-input" id="p25" name="cards_{{ i['player_name'] }}" value="Fenchurch Street Station" {% if 'Fenchurch Street Station' in i['cards'] %} checked {% endif %}>
-                    <label for="p25">Fenchurch Street Station</label><br>
+                    <input type="checkbox" class="form-check-input" id="p25-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Fenchurch Street Station" {% if 'Fenchurch Street Station' in i['cards'] %} checked {% endif %}>
+                    <label for="p25-{{ i['id'] }}">Fenchurch Street Station</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: grey;">
-                    <input type="checkbox" class="form-check-input" id="p26" name="cards_{{ i['player_name'] }}" value="Liverpool Street Station" {% if 'Liverpool Street Station' in i['cards'] %} checked {% endif %}>
-                    <label for="p26">Liverpool Street Station</label><br>
+                    <input type="checkbox" class="form-check-input" id="p26-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Liverpool Street Station" {% if 'Liverpool Street Station' in i['cards'] %} checked {% endif %}>
+                    <label for="p26-{{ i['id'] }}">Liverpool Street Station</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: #F0E68C;">
-                    <input type="checkbox" class="form-check-input" id="p27" name="cards_{{ i['player_name'] }}" value="Electric Company" {% if 'Electric Company' in i['cards'] %} checked {% endif %}>
-                    <label for="p27">Electric Company</label><br>
+                    <input type="checkbox" class="form-check-input" id="p27-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Electric Company" {% if 'Electric Company' in i['cards'] %} checked {% endif %}>
+                    <label for="p27-{{ i['id'] }}">Electric Company</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: #F0E68C;">
-                    <input type="checkbox" class="form-check-input" id="p28" name="cards_{{ i['player_name'] }}" value="Water Company" {% if 'Water Company' in i['cards'] %} checked {% endif %}>
-                    <label for="p28">Water Company</label><br>
+                    <input type="checkbox" class="form-check-input" id="p28-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Water Company" {% if 'Water Company' in i['cards'] %} checked {% endif %}>
+                    <label for="p28-{{ i['id'] }}">Water Company</label><br>
                 </div>
                 <div class="inputs-monopoly" style="background-color: white;">
-                    <input type="checkbox" class="form-check-input" id="p29" name="cards_{{ i['player_name'] }}" value="Get out of jail free" {% if 'Get out of jail free' in i['cards'] %} checked {% endif %}>
-                    <label for="p29">Get out of jail free</label><br>
+                    <input type="checkbox" class="form-check-input" id="p29-{{ i['id'] }}" name="cards_{{ i['player_name'] }}" value="Get out of jail free" {% if 'Get out of jail free' in i['cards'] %} checked {% endif %}>
+                    <label for="p29-{{ i['id'] }}">Get out of jail free</label><br>
                 </div>
                 <hr>
                 <div style="display: flex; justify-content: space-between;">
