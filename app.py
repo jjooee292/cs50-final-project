@@ -303,7 +303,6 @@ def scores():
 def timer():
     if request.method == "POST":
         hours = int(request.form.get("hours"))
-        print(int(hours))
         if int(hours) < 10:
             hours = f"0{hours}"
         mins = int(request.form.get("mins"))
