@@ -2,13 +2,13 @@
   /* “GamingDice” font  © 2013 Joshua Dale Meadows and released under Creative Commons Attributions CC BY 
 License. */
   font-family: 'GamingDice';
-  src: URL('fonts/GamingDiceStandard.ttf') format('truetype');
+  src: URL('/static/fonts/GamingDiceStandard.ttf') format('truetype');
 }
 
 @font-face {
   /* https://www.creativefabrica.com/product/technology-family/ref/162831/ */
   font-family: 'Timer';
-  src: URL('/fonts/technology.bold.ttf') format('truetype');
+  src: URL('/static/fonts/technology.bold.ttf') format('truetype');
 }
 
 #page-container {
@@ -152,6 +152,7 @@ td {
     border-radius: 25px;
   }
 }
+
 
 .player-card {
   display: flex;

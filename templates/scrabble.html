@@ -63,7 +63,7 @@
     {% elif history | length == 0 %}
         <p> To view Scrabble score history, submit some words!</p>
     {% else %}
-        <table class="table table-striped">
+        <table class="table table-striped table-dark table-sm table-responsive">
             {% for i in range(history | length) %}
                 <tr>    
                     <td>

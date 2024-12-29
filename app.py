@@ -150,7 +150,6 @@ def monopoly_load():
         )
         for i in saves:
             i["cards"] = json.loads(i["cards"])
-        print(saves)
         return render_template("monopoly-load.html", saves=saves)
 
 @app.route("/games/monopoly/save", methods=["POST"])
