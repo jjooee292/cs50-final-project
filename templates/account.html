@@ -11,130 +11,155 @@
             <button class="btn btn-danger">Log out</button>
         </form>
     </div>
-    <h2 class="display-5" style="text-align: left;">Statistics:</h2>
-    <hr>
-    {% if monopoly[0]["count(*)"] > 0 %}
-    <h2 class="display-6" style="text-align: center;">Monopoly Games Saved: {{ monopoly[0]["count(*)"] }}</h2>
-    <p style="text-align: center;">To load a previously saved game, <a href="/games/monopoly/load">click here to view your saves</a></p>
-    <hr>
-    {% else %}
-    <p>To start tracking your Monopoly games, click <a href="/games/monopoly">here</a>.</p>
-    <hr>
-    {% endif %}
-    {% if dice[0] %}
-    <h2 class="display-6" style="text-align: center;">Dice Roll History</h2>
-    <table class="table table-striped">
-        <thead class="thead-light">
-            <tr>
-                <th>D4</th>
-                <th>D6</th>
-                <th>D8</th>
-                <th>D10</th>
-                <th>D12</th>
-                <th>D20</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for i in range(dice | length) %}
-            <tr>    
-                {% if dice[i]["D4"] > 0 %}
-                    <td>
-                    {{ dice[i]["D4"] }}                        
-                    </td>
+    <h2 class="display-5">Statistics:</h2>
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item rounded-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button rounded-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Monopoly 
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                {% if monopoly[0]["count(*)"] > 0 %}
+                <h2 class="display-6" style="text-align: center;">Games Saved: {{ monopoly[0]["count(*)"] }}</h2>
+                <p style="text-align: center;">To load a previously saved game, <a href="/games/monopoly/load">click here to view your saves</a></p>
                 {% else %}
-                    <td>
-                        -
-                    </td>
+                <p>To start tracking your Monopoly games, click <a href="/games/monopoly">here</a>.</p>
                 {% endif %}
-                {% if dice[i]["D6"] > 0 %}
-                    <td>
-                    {{ dice[i]["D6"] }}                        
-                    </td>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item rounded-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button rounded-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Dice Roll History
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                {% if dice[0] %}
+                <table class="table table-striped table-dark table-sm table-responsive">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>D4</th>
+                            <th>D6</th>
+                            <th>D8</th>
+                            <th>D10</th>
+                            <th>D12</th>
+                            <th>D20</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in range(dice | length) %}
+                        <tr>    
+                            {% if dice[i]["D4"] > 0 %}
+                                <td>
+                                {{ dice[i]["D4"] }}                        
+                                </td>
+                            {% else %}
+                                <td>
+                                    -
+                                </td>
+                            {% endif %}
+                            {% if dice[i]["D6"] > 0 %}
+                                <td>
+                                {{ dice[i]["D6"] }}                        
+                                </td>
+                            {% else %}
+                                <td>
+                                    -
+                                </td>
+                            {% endif %}
+                            {% if dice[i]["D8"] > 0 %}
+                                <td>
+                                {{ dice[i]["D8"] }}                        
+                                </td>
+                            {% else %}
+                                <td>
+                                    -
+                                </td>
+                            {% endif %}
+                            {% if dice[i]["D10"] > 0 %}
+                                <td>
+                                    {{ dice[i]["D10"] }}                        
+                                </td>
+                            {% else %}
+                                <td>
+                                    -
+                                </td>
+                            {% endif %}
+                            {% if dice[i]["D12"] > 0 %}
+                                <td>
+                                    {{ dice[i]["D12"] }}                        
+                                </td>
+                            {% else %}
+                                <td>
+                                    -
+                                </td>
+                            {% endif %}
+                            {% if dice[i]["D20"] > 0 %}
+                                <td>
+                                    {{ dice[i]["D20"] }}                        
+                                </td>
+                            {% else %}
+                                <td>
+                                    -
+                                </td>
+                            {% endif %}
+                            <td>
+                                <span style="font-weight: bold">{{ dice[i]["D4"] + dice[i]["D6"] + dice[i]["D8"] + dice[i]["D10"] + dice[i]["D12"] + dice[i]["D20"] }}</span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
                 {% else %}
-                    <td>
-                        -
-                    </td>
+                <p>To start tracking your dice rolls, click <a href="/tools/dice">here</a>.</p>
                 {% endif %}
-                {% if dice[i]["D8"] > 0 %}
-                    <td>
-                    {{ dice[i]["D8"] }}                        
-                    </td>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item rounded-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button rounded-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Scrabble History
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                {% if scrabble[0] %}
+                <table class="table table-striped table-dark table-sm table-responsive">
+                    {% for i in range(scrabble | length) %}
+                        <tr>    
+                            <td>
+                                <strong>{{ scrabble[i]["word"] | capitalize }}  </strong>                      
+                            </td>
+                            <td>
+                                {% if scrabble[i]["base_score"] != 0 %}
+                                    Base: {{ scrabble[i]["base_score"] }}
+                                {% else %}
+                                    <i>Invalid</i>
+                                {% endif %}                        
+                            </td>
+                            <td>
+                                {% if scrabble[i]["base_score"] != 0 %}
+                                    Modified: {{ scrabble[i]["mod_score"] }} 
+                                {% else %}
+                                    <i>Invalid</i>
+                                {% endif %}                          
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
                 {% else %}
-                    <td>
-                        -
-                    </td>
-                {% endif %}
-                {% if dice[i]["D10"] > 0 %}
-                    <td>
-                        {{ dice[i]["D10"] }}                        
-                    </td>
-                {% else %}
-                    <td>
-                        -
-                    </td>
-                {% endif %}
-                {% if dice[i]["D12"] > 0 %}
-                    <td>
-                        {{ dice[i]["D12"] }}                        
-                    </td>
-                {% else %}
-                    <td>
-                        -
-                    </td>
-                {% endif %}
-                {% if dice[i]["D20"] > 0 %}
-                    <td>
-                        {{ dice[i]["D20"] }}                        
-                    </td>
-                {% else %}
-                    <td>
-                        -
-                    </td>
-                {% endif %}
-                <td>
-                    <span style="font-weight: bold">{{ dice[i]["D4"] + dice[i]["D6"] + dice[i]["D8"] + dice[i]["D10"] + dice[i]["D12"] + dice[i]["D20"] }}</span>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <hr>
-    {% else %}
-    <p>To start tracking your dice rolls, click <a href="/tools/dice">here</a>.</p>
-    <hr>
-    {% endif %}
-    {% if scrabble[0] %}
-    <h2 class="display-6" style="text-align: center;">Scrabble History</h2>
-    <table class="table table-striped">
-        {% for i in range(scrabble | length) %}
-            <tr>    
-                <td>
-                    <strong>{{ scrabble[i]["word"] | capitalize }}  </strong>                      
-                </td>
-                <td>
-                    {% if scrabble[i]["base_score"] != 0 %}
-                        Base: {{ scrabble[i]["base_score"] }}
-                    {% else %}
-                        <i>Invalid</i>
-                    {% endif %}                        
-                </td>
-                <td>
-                    {% if scrabble[i]["base_score"] != 0 %}
-                        Modified: {{ scrabble[i]["mod_score"] }} 
-                    {% else %}
-                        <i>Invalid</i>
-                    {% endif %}                          
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-    <hr>
-    {% else %}
-    <p>To start tracking your Scrabble games, click <a href="/games/scrabble">here</a>.</p>
-    {% endif %}
-
-
+                <p>To start tracking your Scrabble games, click <a href="/games/scrabble">here</a>.</p>
+                {% endif %}           
+            </div>
+          </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block footer %}

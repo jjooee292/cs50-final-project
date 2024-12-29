@@ -2,20 +2,20 @@
   /* “GamingDice” font  © 2013 Joshua Dale Meadows and released under Creative Commons Attributions CC BY 
 License. */
   font-family: 'GamingDice';
-  src: URL('GamingDiceStandard.ttf') format('truetype');
+  src: URL('fonts/GamingDiceStandard.ttf') format('truetype');
 }
 
 @font-face {
   /* https://www.creativefabrica.com/product/technology-family/ref/162831/ */
   font-family: 'Timer';
-  src: URL('technology.bold.ttf') format('truetype');
+  src: URL('/fonts/technology.bold.ttf') format('truetype');
 }
 
 #page-container {
     position: relative;
     min-height: 100vh;
     background-color: whitesmoke;
-    background-image: linear-gradient(160deg, whitesmoke, silver);
+    background-image: linear-gradient(20deg, rgb(109, 128, 147), whitesmoke);
     background-attachment: fixed;
   }
   
@@ -30,7 +30,7 @@ License. */
     bottom: 0;
     width: 100%;
     height: 2.5rem;            /* Footer height */
-    background-color: #1a1d20;
+    background-color: #212529;
   }
 
 #footer-content {
@@ -349,16 +349,95 @@ ol {
 
 .frosted {
   background-color: rgba(153, 165, 199, 0.3);
-  box-shadow: 4px 8px #999999;
+  box-shadow: 4px 8px #888888;
 }
 
 .frosted input {
   background-color: rgba(243, 240, 255, 0.7);
   accent-color: rgb(243, 240, 255);
-  border: 1px solid grey ;
+  border: 1px solid rgba(128, 128, 128, 0.2) ;
   border-radius: 4px;
 }
 
 .display-5 {
   margin-top: 15px;
+}
+
+.accordion > * {
+  --bs-accordion-active-bg: #f3f0ff;
+  --bs-accordion-btn-focus-box-shadow: none;
+  --bs-accordion-color: black;
+  --bs-accordion-btn-bg:  #99a5c74d;
+  --bs-accordion-active-bg:  #99a5c79d;
+  --bs-accordion-border-color:  black;
+}
+
+.accordion-item {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.homepage-icon {
+  filter:invert(1);
+}
+
+.homepage-logo {
+  border: 1px solid black ;
+  border-radius: 25px;
+  padding: 24px;
+  padding-bottom: 0px;
+  margin-bottom: 60px;
+  margin-top: 50px;
+  background-image: linear-gradient(60deg, rgba(153, 165, 199, 0.3), whitesmoke);
+}
+
+.homepage-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-image: url("https://images.unsplash.com/photo-1559480423-85de1db621ed?q=80&w=1968&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-color: #BBBBBB;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 415px;
+  border-radius: 25px;
+  box-shadow: 4px 8px #888888;
+}
+
+
+
+.hero-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 320px;
+  width: 50%;
+  background-image: linear-gradient(160deg, rgba(153, 165, 199, 0.6), rgba(224, 224, 224, 0.76));
+  border-radius: 25px;
+}
+
+@media only screen and (max-width: 880px) {
+  .hero-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 320px;
+    width: 85%;
+    background-image: linear-gradient(160deg, rgba(153, 165, 199, 0.6), rgba(224, 224, 224, 0.76));
+    border-radius: 25px;
+  }
+}
+
+#homepage-info {
+  width: 60%; 
+  margin-top: 60px; 
+  box-shadow: none;
+}
+
+@media only screen and (max-width: 880px) {
+  #homepage-info {
+    width: 80%;
+  }
 }

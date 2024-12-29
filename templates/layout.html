@@ -12,7 +12,7 @@
     <body id="page-container">
         <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/"><img src="/static/dice_icon.svg" alt="Dice Icon" width="40" height="30" style="margin-right: 5%; margin-bottom: 2%;">Board Game Tools</a>
+                <a class="navbar-brand" href="/"><img src="/static/images/dice_icon.svg" alt="Dice Icon" width="40" height="30" style="margin-right: 5%; margin-bottom: 2%;">Board Game Tools</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -55,8 +55,13 @@
             </div>
         </main>
         <footer id="footer">
-            <div id="footer-content">
-              {% block footer %}{% endblock %}
+            <div id="footer-content" style="display: flex; justify-content: space-between; align-items: baseline;">
+              <div>
+                {% block footer %}{% endblock %}
+              </div>
+              <div>
+                <p>2024 - Joseph Taylor - CS50x</p>
+              </div>
             </div>
         </footer>
     </body>

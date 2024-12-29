@@ -15,7 +15,7 @@
         </header>
     </div>
     {% endif %}
-    <div class="centred-input" id="login-form">
+    <div class="centred-input frosted" id="login-form">
         <h1 class="display-5">Register for a new account</h1>
         <form method="post", action="/register">
             <div class="inputs" style="flex-direction: column; align-items: center;">
@@ -34,9 +34,10 @@
             <li>Contain at least one capital letter</li>
             <li>Contain at least one special character</li>
         </ul>
+        <p>Already have an account? <a href="/login">Login</a> instead.</p>
     </div>
 {% endblock %}
 
 {% block footer %}
-    <p>Already have an account? <a href="/login">Login</a> instead.</p>
+    
 {% endblock %}

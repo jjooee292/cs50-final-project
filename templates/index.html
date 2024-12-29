@@ -15,33 +15,30 @@
         </header>
     </div>
     {% endif %}
-    <div class="main_page_content">
-      <h1 class="display-1" style="text-align: center;">Board Game Tools</h1>
-      <div id="carousel" class="carousel slide">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="https://images.unsplash.com/photo-1501139083538-0139583c060f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100">
+    <div class="main_page_content" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+      <div class="homepage-logo" style="display: flex; justify-content: center; align-items: center;">
+        <img class="homepage-icon" src="static/images/dice_icon.svg" alt="Dice Icon" width="80" height="60" style="margin-right: 5%; margin-bottom: 5%;">
+        <h1 class="display-4" style="text-align: center; padding-bottom: 20px; text-wrap: nowrap;">Board Game Tools</h1>
+      </div>
+      <div class="homepage-hero">
+      <!--Photo by Tim Foster on Unsplash: https://unsplash.com/photos/close-up-photo-of-red-dice-y6uilkrSyMs?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash-->
+        <div class="hero-box">
+            <h2 class="display-6" style="text-align: center;">Get Started</h2>
+          <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+            <form action="/tools"><button class="btn btn-lg btn-primary" style="margin: 20px;">View all tools</button></form>
+            <form action="/games"><button class="btn btn-lg btn-primary" style="margin: 20px;">View all games</button></form>
           </div>
-          <div class="carousel-item">
-            <img src="https://images.unsplash.com/photo-1611371805429-8b5c1b2c34ba?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100">
-          </div>
-          <div class="carousel-item">
-            <img src="https://images.unsplash.com/photo-1640720874254-d85c8cc6b9cb?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100">
+          <div style="display: flex; justify-content: center;">
+              <form action="/login"><button class="btn btn-secondary">Login</button></form>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+      </div>
+      <div id="homepage-info" class="centred-input frosted">  
+        <p style="text-align: center;">Board Game Tools is a web application that forms my final project of CS50x, that provides tools to assist board game players in playing, scoring, timing and tracking, through both general purpose tools and specific game tools.</p>
       </div>
     </div>
     
 {% endblock %}
 
 {% block footer %}
-    <p>Sign up or log in to start tracking scores</p>
 {% endblock %}
