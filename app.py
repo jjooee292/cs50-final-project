@@ -129,7 +129,7 @@ def monopoly():
     if request.method == "POST":
         players = []
         for i in range(len(request.form.getlist("player_name"))):
-            players.append({"player_name": request.form.getlist("player_name")[i], "cash": 1500, "houses": "0", "hotels": "0"})
+            players.append({"player_name": request.form.getlist("player_name")[i], "id":i, "cash": 1500, "houses": "0", "hotels": "0"})
         return render_template("monopoly.html", players = players)
     else:
         return render_template("monopoly-setup.html")
